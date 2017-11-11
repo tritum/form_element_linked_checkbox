@@ -30,8 +30,8 @@ registration.
 
 ## Credits
 
-This exemplary TYPO3 extension was created by Björn Jacob/ TRITUM GmbH. The
-idea was born at the TYPO3 CertiFUNcation Day 2017. The audience of my talk
+This exemplary TYPO3 extension was created by Björn Jacob (https://www.tritum.de).
+The idea was born at the TYPO3 CertiFUNcation Day 2017. The audience of my talk
 kindly asked for such an element. Lightheaded, I said it will not take more
 than 30 minutes to create such an extension. Unfortunately, I could not
 make it in this time. It took my nearly 1.5 hours to come up with all the
@@ -39,6 +39,6 @@ code. The JS part gave me a hard time.
 
 ## Thank you
 
-Jochen Weiland - TYPOholic at https://jweiland.net/ - supported this
+Jochen Weiland - TYPOholic at https://jweiland.net - supported this
 challenge in multiple ways. Thanks for being an outstanding part of our
 TYPO3 community.
