@@ -1,0 +1,55 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            Form:
+              renderingOptions:
+                partialRootPaths:
+                  1505042806: 'EXT:form_element_linked_checkbox/Resources/Private/Frontend/Partials/'
+
+            LinkedCheckbox:
+              # inherit configuration from checkbox element
+              __inheritances:
+                10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Checkbox'
+              formEditor:
+                label: 'Linked checkbox'
+                groupSorting: 150
+                properties:
+                  pageUid: ''
+                predefinedDefaults:
+                  properties:
+                    pageUid: ''
+                    linkText: ''
+                # add new field which allows selection of a page (= link target)
+                editors:
+                  300:
+                    identifier: 'pageUid'
+                    templateName: 'Inspector-Typo3WinBrowserEditor'
+                    label: 'formEditor.elements.LinkedCheckbox.pageUid.label'
+                    buttonLabel: 'formEditor.elements.LinkedCheckbox.pageUid.buttonLabel'
+                    browsableType: pages
+                    # very important setting -> defines the written form definition
+                    propertyPath: 'properties.pageUid'
+                    propertyValidatorsMode: 'OR'
+                    propertyValidators:
+                      10: 'Integer'
+                      20: 'FormElementIdentifierWithinCurlyBracesExclusive'
+                  400:
+                    identifier: 'linkText'
+                    templateName: 'Inspector-TextEditor'
+                    label: 'formEditor.elements.LinkedCheckbox.editor.label.linkText'
+                    propertyPath: 'properties.linkText'
+                    propertyValidators:
+                      10: 'NotEmpty'
+
+          formEditor:
+            translationFile:
+              10: 'EXT:form/Resources/Private/Language/Database.xlf'
+              20: 'EXT:form_element_linked_checkbox/Resources/Private/Language/Database.xlf'
+            dynamicRequireJsModules:
+              additionalViewModelModules:
+                - 'TYPO3/CMS/FormElementLinkedCheckbox/Backend/FormEditor/ViewModel'
+            formEditorPartials:
+              FormElement-LinkedCheckbox: 'Stage/SimpleTemplate'
