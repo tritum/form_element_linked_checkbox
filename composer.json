@@ -1,0 +1,19 @@
+{
+    "name": "tritum/form-element-linked-checkbox",
+    "description": "",
+    "type": "typo3-cms-extension",
+    "require": {
+        "typo3/cms": "~8.7"
+    },
+    "replace": {
+        "form_element_linked_checkbox": "self.version",
+        "tritum/form_element_linked_checkbox": "self.version"
+    },
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Björn Jacob TRITUM GmbH",
+            "email": "bjoern.jacob@tritum.de"
+        }
+    ]
+}
