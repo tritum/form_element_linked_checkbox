@@ -1,20 +1,21 @@
-# Custom form element "Linked Checkbox"
+# Custom form element "Linked checkbox"
 
 This TYPO3 extension adds a custom form element "Linked checkbox" to the
-TYPO3 form framework. The user is able to define the linked page and the
+TYPO3 form framework. The user is able to define the link target and the
 link text.
 
 ## Install
 
-Copy the extension folder to `\typo3conf\ext\ ` or upload it via extension
-manager. Add the static TypoScript configuration to your TypoScript template.
+Copy the extension folder to `\typo3conf\ext\ `, upload it via extension
+manager or add it to your composer.json. Add the static TypoScript
+configuration to your TypoScript template.
 
 ## Usage
 
-Open the TYPO3 form editor. Add a new element to your form. The modal will
-list the new custom form element "Linked Checkbox". Provide a label for the
-checkbox and select a page you want to link to. Furthermore, you have to set
-a link text.
+Open the TYPO3 form editor and create a new form/ open an existing one. Add
+a new element to your form. The modal will list the new custom form element
+"Linked checkbox". Provide a label for the checkbox and select a page you
+want to link to. Furthermore, you have to set a link text.
 
 ## Possible improvements or changes
 
