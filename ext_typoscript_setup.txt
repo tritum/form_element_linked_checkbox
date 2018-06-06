@@ -1,7 +1,0 @@
-module.tx_form {
-    settings {
-        yamlConfigurations {
-            1505042806 = EXT:form_element_linked_checkbox/Configuration/Yaml/FormSetup.yaml
-        }
-    }
-}
