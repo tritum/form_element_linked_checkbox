@@ -1,9 +1,6 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-/*
- * @author Björn Jacob TRITUM GmbH <bjoern.jacob@tritum.de>
- */
 call_user_func(function () {
     if (TYPO3_MODE === 'BE') {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('

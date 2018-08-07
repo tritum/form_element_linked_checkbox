@@ -1,5 +1,4 @@
 <?php
-
 $EM_CONF['form_element_linked_checkbox'] = [
     'title' => 'Form: linked checkbox',
     'description' => 'Adds a new form element which allows the editor to create a checkbox with a linked label text.',
@@ -10,7 +9,7 @@ $EM_CONF['form_element_linked_checkbox'] = [
     'clearCacheOnLoad' => 0,
     'author' => 'Bjoern Jacob TRITUM GmbH',
     'author_email' => 'bjoern.jacob@tritum.de',
-    'version' => '1.0.2',
+    'version' => '1.0.3',
     'constraints' => [
         'depends' => [
             'typo3' => '8.7.0-9.2.0',
