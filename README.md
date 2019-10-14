@@ -12,10 +12,58 @@ configuration to your TypoScript template.
 
 ## Usage
 
-Open the TYPO3 form editor and create a new form/ open an existing one. Add
+Open the TYPO3 form editor and create a new form/open an existing one. Add
 a new element to your form. The modal will list the new custom form element
 "Linked checkbox". Provide a label for the checkbox and select a page you
 want to link to. Furthermore, you have to set a link text.
+
+### Combination of label and link
+
+The default label consists of the label itself, followed by a link to the
+specified page with the given link text. In case you want to use label and
+link together, just define the link position inside your label with a simple
+character substitution.
+
+Example:
+
+* Label: `I accept the %s.`
+* Link text: `terms and conditions`
+* Output: `I accept the <a href="/privacy-policy" target="_blank">terms and conditions</a>.`
+
+#### Link configuration
+
+You can provide additional link configuration which will be used when
+generating the link within the label. Note that this can only be defined
+in the appropriate `.form.yaml` file but not in the Backend module.
+
+```yaml
+type: LinkedCheckbox
+idenfitier: privacy-policy
+label: 'I accept the %s.'
+properties:
+  pageUid: '67'
+  linkText: 'terms and conditions'
+
+renderingOptions:
+  linkConfiguration:
+    # Additional typolink configuration can be inserted here, e.g.:
+    no_cache: 1
+```
+
+For a full list of available configuration take a look at the
+[TypoScript reference](https://docs.typo3.org/m/typo3/reference-typoscript/master/en-us/Functions/Typolink.html).
+
+#### Override default link target
+
+By default, the link target is set to `_blank`. If you want to override it,
+just define a custom link configuration `parameter` – either an empty string
+or a custom target/additional parameter configuration:
+
+```yaml
+renderingOptions:
+  linkConfiguration:
+    parameter: ''
+```
 
 ## Possible improvements or changes
 
