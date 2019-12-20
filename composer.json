@@ -15,5 +15,10 @@
             "name": "Björn Jacob TRITUM GmbH",
             "email": "bjoern.jacob@tritum.de"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "TRITUM\\FormElementLinkedCheckbox\\": "Classes/"
+        }
+    }
 }
