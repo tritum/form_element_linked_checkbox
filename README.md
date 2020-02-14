@@ -38,7 +38,7 @@ in the appropriate `.form.yaml` file but not in the Backend module.
 
 ```yaml
 type: LinkedCheckbox
-idenfitier: privacy-policy
+identifier: privacy-policy
 label: 'I accept the %s.'
 properties:
   pageUid: '67'
