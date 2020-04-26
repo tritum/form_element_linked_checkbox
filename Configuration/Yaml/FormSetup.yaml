@@ -21,7 +21,7 @@ TYPO3:
                 predefinedDefaults:
                   properties:
                     pageUid: ''
-                    linkText: ''
+                    linkText: 'formEditor.elements.LinkedCheckbox.editor.linkText.predefinedDefaults'
                 # add new field which allows selection of a page (= link target)
                 editors:
                   300:
@@ -30,6 +30,7 @@ TYPO3:
                     label: 'formEditor.elements.LinkedCheckbox.pageUid.label'
                     buttonLabel: 'formEditor.elements.LinkedCheckbox.pageUid.buttonLabel'
                     browsableType: pages
+                    iconIdentifier: apps-pagetree-page-default
                     # very important setting -> defines the written form definition
                     propertyPath: 'properties.pageUid'
                     propertyValidatorsMode: 'OR'
@@ -45,6 +46,7 @@ TYPO3:
                       10: 'NotEmpty'
 
           formEditor:
+            # does not work in v10 but does no harm and can be kept for backward compatibility
             translationFile:
               10: 'EXT:form/Resources/Private/Language/Database.xlf'
               20: 'EXT:form_element_linked_checkbox/Resources/Private/Language/Database.xlf'

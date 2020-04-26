@@ -1,6 +1,6 @@
 <?php
 $EM_CONF['form_element_linked_checkbox'] = [
-    'title' => 'Form: linked checkbox',
+    'title' => 'Form: Linked checkbox element',
     'description' => 'Adds a new form element which allows the editor to create a checkbox with a linked label text.',
     'category' => '',
     'state' => 'stable',
