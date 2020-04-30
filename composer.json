@@ -3,8 +3,8 @@
     "description": "",
     "type": "typo3-cms-extension",
     "require": {
-        "typo3/cms-core": "^9.5 || ^10.4",
-        "typo3/cms-form": "^9.5 || ^10.4"
+        "typo3/cms-core": "^9.5.16 || ^10.4",
+        "typo3/cms-form": "^9.5.16 || ^10.4"
     },
     "replace": {
         "tritum/form_element_linked_checkbox": "self.version"
