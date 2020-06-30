@@ -60,29 +60,38 @@ class FormElementLinkResolverHook
         }
 
         $properties = $renderable->getProperties();
-        $pageUid = (int) $properties['pageUid'];
-        $translatedLinkText = $this->translate($renderable, 'linkText', $formRuntime);
+        $pageUids = $this->extractUids($properties);
+        $linkTexts = $this->extractLinkTexts($properties);
 
         // Build link if pageUid is valid
-        if ($pageUid) {
+        if (count($pageUids) > 0 && count($linkTexts) > 0) {
             $additionalLinkConfiguration = $renderable->getRenderingOptions()['linkConfiguration'] ?? [];
-            $content = $this->buildLinkFromPageUid($translatedLinkText, $pageUid, $additionalLinkConfiguration);
+            $links = [];
+            for ($i = 0; $i < count($pageUids); $i++) {
+                if (!key_exists($i, $linkTexts) || !key_exists($i, $pageUids)) {
+                    continue;
+                }
+                $links[] = $this->buildLinkFromPageUid($linkTexts[$i], $pageUids[$i], $additionalLinkConfiguration);
+            }
         } else {
-            $content = $properties['linkText'];
+            $links = $properties['linkText'];
         }
 
         // Provide translated link as argument for the form element label
         $renderable->setRenderingOption('translation', [
             'arguments' => [
                 'label' => [
-                    $content,
+                    $links,
                 ],
             ],
         ]);
 
         // Override final label (with translated link) as well
         // as it will be used as default value if no translation is provided
-        $translatedLabel = vsprintf($label, [$content]);
+        $translatedLabel = vsprintf($label, $links);
+        if ($translatedLabel === false) {
+            throw new \Exception('1593536213: Please provide the same amount of values for the substitution as placeholders in the linked checkbox form element for the "' . $formRuntime->getLabel() . '" form.');
+        }
         $renderable->setLabel($translatedLabel);
 
         // Reset linkText and pageUid properties in order
@@ -93,8 +102,8 @@ class FormElementLinkResolverHook
         // Set fallback value to original property values
         // to allow other hooks making use of these ones
         $renderable->setProperty('_label', $label);
-        $renderable->setProperty('_linkText', $translatedLinkText);
-        $renderable->setProperty('_pageUid', $pageUid);
+        $renderable->setProperty('_linkText', implode('|', $linkTexts));
+        $renderable->setProperty('_pageUid', implode('|', $pageUids));
     }
 
     /**
@@ -173,5 +182,15 @@ class FormElementLinkResolverHook
             $filteredValue = str_replace('%%', '', $filteredValue);
         } while(strpos($filteredValue, '%%') !== false);
         return strpos($filteredValue, '%') !== false;
+    }
+
+    private function extractUids(array $properties): array
+    {
+        return GeneralUtility::intExplode('|', $properties['pageUid']);
+    }
+
+    private function extractLinkTexts(array $properties): array
+    {
+        return GeneralUtility::trimExplode('|', $properties['linkText']);
     }
 }

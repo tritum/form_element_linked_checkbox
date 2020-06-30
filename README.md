@@ -72,6 +72,20 @@ renderingOptions:
     parameter: ''
 ```
 
+#### Multiple Links
+
+You can provide multiple values for `pageUid` and `linkText`, separated with a pipe `|` symbol to place multiple links in your label.
+Notice that the number of values in both properties have to be equal, or an error will be raised.
+
+```yaml
+type: LinkedCheckbox
+identifier: privacy-policy
+label: 'I accept the %s and %s.'
+properties:
+  pageUid: '67|68'
+  linkText: 'terms|conditions'
+```
+
 ## Possible improvements or changes
 
 Instead of creating a new form element, the existing `Checkbox` form element
