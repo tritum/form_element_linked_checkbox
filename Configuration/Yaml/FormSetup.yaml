@@ -26,17 +26,12 @@ TYPO3:
                 editors:
                   300:
                     identifier: 'pageUid'
-                    templateName: 'Inspector-Typo3WinBrowserEditor'
+                    templateName: 'Inspector-TextEditor'
                     label: 'formEditor.elements.LinkedCheckbox.pageUid.label'
-                    buttonLabel: 'formEditor.elements.LinkedCheckbox.pageUid.buttonLabel'
-                    browsableType: pages
-                    iconIdentifier: apps-pagetree-page-default
                     # very important setting -> defines the written form definition
                     propertyPath: 'properties.pageUid'
-                    propertyValidatorsMode: 'OR'
                     propertyValidators:
-                      10: 'Integer'
-                      20: 'FormElementIdentifierWithinCurlyBracesExclusive'
+                      10: 'NotEmpty'
                   400:
                     identifier: 'linkText'
                     templateName: 'Inspector-TextEditor'
