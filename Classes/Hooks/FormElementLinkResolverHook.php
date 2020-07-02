@@ -150,6 +150,7 @@ class FormElementLinkResolverHook
         $configuration = [
             'typolink.' => [
                 'parameter' => trim($parameter),
+                'ATagParams' => 'class="legal-link"',
             ],
         ];
         if ($additionalAttributes) {
