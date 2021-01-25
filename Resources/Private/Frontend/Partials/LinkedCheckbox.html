@@ -11,7 +11,7 @@
                         errorClass="{element.properties.elementErrorClassAttribute}"
                         additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
                 />
-                <span>{formvh:translateElementProperty(element: element, property: 'label') -> f:format.raw()} <f:link.typolink parameter="{element.properties.pageUid}" target="_blank">{formvh:translateElementProperty(element: element, property: 'linkText')}</f:link.typolink><f:if condition="{element.required}"> <f:render partial="Field/Required" /></f:if></span>
+                <span>{formvh:translateElementProperty(element: element, property: 'label') -> f:format.raw()}<f:if condition="{element.required}"> <f:render partial="Field/Required" /></f:if></span>
             </label>
         </div>
     </f:render>
