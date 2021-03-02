@@ -20,15 +20,22 @@ want to link to. Furthermore, you have to set a link text.
 ### Combination of label and link
 
 The default label consists of the label itself, followed by a link to the
-specified page with the given link text. In case you want to use label and
-link together, just define the link position inside your label with a simple
-character substitution.
+specified page with the given link text.
 
 Example:
 
-* Label: `I accept the %s.`
+* Label: `I accept the `
+* Link text: `terms and conditions.`
+* Output: `I accept the <a href="/privacy-policy" target="_blank">terms and conditions.</a>`
+
+If want to use the link inside your label, define the link position
+in the label with a character substitution.
+
+Example:
+
+* Label: `I have read the %s and accept them.`
 * Link text: `terms and conditions`
-* Output: `I accept the <a href="/privacy-policy" target="_blank">terms and conditions</a>.`
+* Output: `I have read the <a href="/privacy-policy" target="_blank">terms and conditions</a> and accept them.`
 
 #### Link configuration
 
