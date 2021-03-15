@@ -6,9 +6,6 @@
         "typo3/cms-core": "^9.5.16 || ^10.4",
         "typo3/cms-form": "^9.5.16 || ^10.4"
     },
-    "replace": {
-        "tritum/form_element_linked_checkbox": "self.version"
-    },
     "license": "GPL-2.0-or-later",
     "authors": [
         {
@@ -19,6 +16,11 @@
     "autoload": {
         "psr-4": {
             "TRITUM\\FormElementLinkedCheckbox\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "form_element_linked_checkbox"
         }
     }
 }
