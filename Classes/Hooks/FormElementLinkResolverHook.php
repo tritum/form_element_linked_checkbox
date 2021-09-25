@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-namespace TRITUM\FormElementLinkedCheckbox\Hooks;
 
 /*
  * This file is part of the TYPO3 CMS extension "form_element_linked_checkbox".
@@ -16,6 +15,8 @@ namespace TRITUM\FormElementLinkedCheckbox\Hooks;
  * The TYPO3 project - inspiring people to share!
  */
 
+namespace TRITUM\FormElementLinkedCheckbox\Hooks;
+
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement;
@@ -26,7 +27,7 @@ use TYPO3\CMS\Form\Service\TranslationService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
- * Form rendering hook to resolve link in label of LinkedCheckbox elements.
+ * Form rendering hook to resolve links in label of LinkedCheckbox elements.
  *
  * @author Elias Häußler <elias@haeussler.dev>
  * @license GPL-2.0-or-later
@@ -37,6 +38,11 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      * @var string Form element type to match
      */
     protected $type = 'LinkedCheckbox';
+
+    /**
+     * @var FormRuntime The current form runtime
+     */
+    protected $formRuntime;
 
     /**
      * Resolve link in label of form elements with type LinkedCheckbox.
@@ -76,9 +82,9 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      */
     protected function processCharacterSubstitution(FormRuntime $formRuntime, RootRenderableInterface $renderable): void
     {
-        $label = $this->translate($renderable, 'label', $formRuntime);
+        $this->formRuntime = $formRuntime;
 
-        // Only process linkText parsing if $renderable matches given type
+        // Only process linkText parsing if renderable matches given type
         // and form element label contains any argument flags such as %s.
         // This also checks if one tries to use the percent sign as regular
         // character instead of a flag marked for inserting the translated
@@ -86,61 +92,145 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
         if (
             !$renderable instanceof GenericFormElement ||
             $renderable->getType() !== $this->type ||
-            !self::needsCharacterSubstitution($label)
+            !self::needsCharacterSubstitution($label = $this->translate($renderable, ['label']))
         ) {
             return;
         }
 
         $properties = $renderable->getProperties();
-        $pageUid = (int)$properties['pageUid'];
-        $translatedLinkText = $this->translate($renderable, 'linkText', $formRuntime);
 
-        // Build link if pageUid is valid
-        if ($pageUid) {
-            $additionalLinkConfiguration = $renderable->getRenderingOptions()['linkConfiguration'] ?? [];
-            $content = $this->buildLinkFromPageUid($translatedLinkText, $pageUid, $additionalLinkConfiguration);
-        } else {
-            $content = $properties['linkText'];
-        }
+        // Resolve all label arguments and merge them together in order to
+        // use it for later translation of the label. The following
+        // configuration methods are considered:
+        // - "single configuration" via properties pageUid / linkText
+        // - "array configuration" via property "additionalLinks"
+        $singleLinkArgument = $this->buildArgumentFromSingleConfiguration($renderable);
+        $additionalLinkArguments = $this->buildArgumentsFromArrayConfiguration($renderable);
+        $labelArguments = array_merge([$singleLinkArgument], $additionalLinkArguments);
 
         // Provide translated link as argument for the form element label
         $renderable->setRenderingOption('translation', [
             'arguments' => [
-                'label' => [
-                    $content,
-                ],
+                'label' => $labelArguments,
             ],
         ]);
 
-        // Override final label (with translated link) as well
-        // as it will be used as default value if no translation is provided
-        $translatedLabel = vsprintf($label, [$content]);
-        $renderable->setLabel($translatedLabel);
+        // Run translation again and override final label
+        // (with translated links) as well as it will be used
+        // as default value if no translation is provided
+        $translatedLabel = vsprintf($label, $labelArguments);
+        if (is_string($translatedLabel)) {
+            $renderable->setLabel($translatedLabel);
+        }
 
-        // Reset linkText and pageUid properties in order
-        // to avoid additional link rendering in template
+        // Reset custom properties in order to avoid additional
+        // link rendering in template
         $renderable->setProperty('linkText', null);
         $renderable->setProperty('pageUid', null);
+        $renderable->setProperty('additionalLinks', null);
 
         // Set fallback value to original property values
         // to allow other hooks making use of these ones
         $renderable->setProperty('_label', $label);
-        $renderable->setProperty('_linkText', $translatedLinkText);
-        $renderable->setProperty('_pageUid', $pageUid);
+        $renderable->setProperty('_linkText', $singleLinkArgument);
+        $renderable->setProperty('_pageUid', (int)$properties['pageUid']);
+        $renderable->setProperty('_additionalLinks', $additionalLinkArguments);
         $renderable->setProperty('_linksProcessed', true);
     }
 
     /**
-     * Translate form element property.
+     * Build translation argument for label from single configuration.
      *
-     * @param RootRenderableInterface $renderable
-     * @param string $property
-     * @param FormRuntime $formRuntime
+     * Returns the resolved argument from properties "pageUid" and "linkText"
+     * (default configuration).
+     *
+     * @param GenericFormElement $element
      * @return string
      */
-    protected function translate(RootRenderableInterface $renderable, string $property, FormRuntime $formRuntime): string
+    protected function buildArgumentFromSingleConfiguration(GenericFormElement $element): string
     {
-        $value = TranslationService::getInstance()->translateFormElementValue($renderable, [$property], $formRuntime);
+        $properties = $element->getProperties();
+        $pageUid = (int)$properties['pageUid'];
+
+        return $this->buildArgument($element, ['linkText'], $pageUid);
+    }
+
+    /**
+     * Build translation arguments for label from array configuration.
+     *
+     * Returns the resolved arguments from property "additionalLinks". The
+     * property consists of a key/value combination of "pageUid"/"linkText".
+     *
+     * @return string[]
+     */
+    protected function buildArgumentsFromArrayConfiguration(GenericFormElement $element): array
+    {
+        if (!$this->hasAdditionalLinksConfigured($element)) {
+            return [];
+        }
+
+        $properties = $element->getProperties();
+        $arguments = [];
+
+        foreach ($properties['additionalLinks'] as $pageUid => $linkText) {
+            $arguments[$pageUid] = $this->buildArgument($element, ['additionalLinks', $pageUid], (int)$pageUid);
+        }
+
+        return $arguments;
+    }
+
+    /**
+     * Build translation argument for label from given property path to link text.
+     *
+     * Returns the translation argument for the given property path. The property
+     * path describes the path to the link text for the current argument, whereas
+     * the pageUid describes the actual target page. If the pageUid is valid, this
+     * method returns the generated link, otherwise the translated link text.
+     *
+     * @param GenericFormElement $element
+     * @param string[] $linkTextPropertyPath
+     * @param int $pageUid
+     * @return string
+     */
+    protected function buildArgument(GenericFormElement $element, array $linkTextPropertyPath, int $pageUid): string
+    {
+        $translatedLinkText = $this->translate($element, $linkTextPropertyPath);
+        $additionalLinkConfiguration = $element->getRenderingOptions()['linkConfiguration'] ?? [];
+
+        if ($pageUid <= 0) {
+            return $translatedLinkText;
+        }
+
+        return $this->buildLinkFromPageUid($translatedLinkText, $pageUid, $additionalLinkConfiguration);
+    }
+
+    /**
+     * Check whether renderable has additional links configured.
+     *
+     * Returns `true` if the current renderable has at least one "additional link"
+     * configured (via property "additionalLinks").
+     *
+     * @param GenericFormElement $element
+     * @return bool
+     */
+    protected function hasAdditionalLinksConfigured(GenericFormElement $element): bool
+    {
+        $properties = $element->getProperties();
+
+        return is_array($properties['additionalLinks'] ?? null) && [] !== $properties['additionalLinks'];
+    }
+
+    /**
+     * Translate form element property by given path.
+     *
+     * @param RootRenderableInterface $renderable
+     * @param string[] $propertyPath
+     * @return string
+     */
+    protected function translate(RootRenderableInterface $renderable, array $propertyPath): string
+    {
+        $translationService = TranslationService::getInstance();
+        $value = $translationService->translateFormElementValue($renderable, $propertyPath, $this->formRuntime);
 
         if (!is_string($value)) {
             return '';
@@ -189,9 +279,8 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
 
         $contentObject = GeneralUtility::makeInstance(ContentObjectRenderer::class);
         $contentObject->start([], '');
-        $link = $contentObject->stdWrap($linkText, $configuration);
 
-        return $link;
+        return $contentObject->stdWrap($linkText, $configuration);
     }
 
     /**

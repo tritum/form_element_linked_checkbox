@@ -28,7 +28,7 @@ Example:
 
 * Label: `I accept the `
 * Link text: `terms and conditions.`
-* Output: `I accept the <a href="/privacy-policy" target="_blank">terms and conditions.</a>`
+* Output: `I accept the <a href="/terms" target="_blank">terms and conditions.</a>`
 
 If want to use the link inside your label, define the link position
 in the label with a character substitution. We highly **recommend** this way.
@@ -37,7 +37,20 @@ Example:
 
 * Label: `I have read the %s and accept them.`
 * Link text: `terms and conditions`
-* Output: `I have read the <a href="/privacy-policy" target="_blank">terms and conditions</a> and accept them.`
+* Output: `I have read the <a href="/terms" target="_blank">terms and conditions</a> and accept them.`
+
+You can also use more than one link in the checkbox label. For this, just
+use the field `additionalLinks` and provide a combination of Page UID and
+link text.
+
+Example:
+
+* Label: `I have read the %s and %s and accept them.`
+* Link text: `terms and conditions`
+* Additional links:
+  - `privacy policy`
+* Output: `I have read the <a href="/terms" target="_blank">terms and conditions</a> and <a href="/privacy-policy" target="_blank">privacy policy</a> and accept them.`
+
 
 > Note: Either way, you have to overwrite your email templates in order to correctly output the data. Check the section below regarding email templates.
 
@@ -45,15 +58,18 @@ Example:
 
 You can provide additional link configuration which will be used when
 generating the link within the label. Note that this can only be defined
-in the appropriate `.form.yaml` file but not in the form editor.
+in the appropriate `.form.yaml` file but not in the form editor and
+applies to all generated links.
 
 ```yaml
 type: LinkedCheckbox
-identifier: privacy-policy
-label: 'I accept the %s.'
+identifier: consent
+label: 'I accept the %s and %s.'
 properties:
   pageUid: '67'
   linkText: 'terms and conditions'
+  additionalLinks:
+    83: 'privacy policy'
 
 renderingOptions:
   linkConfiguration:
