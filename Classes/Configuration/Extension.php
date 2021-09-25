@@ -26,7 +26,6 @@ namespace TRITUM\FormElementLinkedCheckbox\Configuration;
 use TRITUM\FormElementLinkedCheckbox\Hooks\FormElementLinkResolverHook;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Extension
@@ -40,12 +39,6 @@ final class Extension
 
     public static function addTypoScriptSetup(): void
     {
-        // TypoScript setup at module.tx_form is only necessary in Backend context,
-        // therefore the following code must not be executed if we're in Frontend.
-        if (self::isEnvironmentInFrontendMode()) {
-            return;
-        }
-
         ExtensionManagementUtility::addTypoScriptSetup(trim('
             module.tx_form {
                 settings {
@@ -74,10 +67,5 @@ final class Extension
     public static function registerHooks(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['beforeRendering'][1571076908] = FormElementLinkResolverHook::class;
-    }
-
-    private static function isEnvironmentInFrontendMode(): bool
-    {
-        return isset($GLOBALS['TSFE']) && $GLOBALS['TSFE'] instanceof TypoScriptFrontendController;
     }
 }
