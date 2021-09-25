@@ -30,6 +30,6 @@ call_user_func(function () {
         }
     }
 
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['beforeRendering'][1571076908]
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterFormStateInitialized'][1571076908]
         = \TRITUM\FormElementLinkedCheckbox\Hooks\FormElementLinkResolverHook::class;
 });
