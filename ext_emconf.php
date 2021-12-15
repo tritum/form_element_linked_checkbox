@@ -9,10 +9,10 @@ $EM_CONF['form_element_linked_checkbox'] = [
     'clearCacheOnLoad' => 0,
     'author' => 'Bjoern Jacob TRITUM GmbH',
     'author_email' => 'bjoern.jacob@tritum.de',
-    'version' => '2.1.2',
+    'version' => '2.2.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '9.5.25-11.99.99',
+            'typo3' => '9.5.30-11.5.99',
         ],
         'conflicts' => [],
         'suggests' => [],
