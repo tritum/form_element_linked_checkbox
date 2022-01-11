@@ -23,6 +23,8 @@ jobs:
         run: composer normalize --dry-run
       - name: Lint PHP
         run: composer lint:php -- --dry-run
+      - name: Lint TypoScript
+        run: composer lint:typoscript -- --fail-on-warnings
 
       # SCA
       - name: SCA PHP
