@@ -1,3 +1,5 @@
+[![CGL](https://github.com/tritum/form_element_linked_checkbox/actions/workflows/cgl.yaml/badge.svg)](https://github.com/tritum/form_element_linked_checkbox/actions/workflows/cgl.yaml)
+
 # Custom form element "Linked checkbox"
 
 This TYPO3 extension adds a custom form element "Linked checkbox" to the
