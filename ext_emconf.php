@@ -3,7 +3,7 @@
 $EM_CONF['form_element_linked_checkbox'] = [
     'title' => 'Form: Linked checkbox element',
     'description' => 'Adds a new form element which allows the editor to create a checkbox with a linked label text.',
-    'category' => '',
+    'category' => 'fe',
     'state' => 'stable',
     'clearCacheOnLoad' => 0,
     'author' => 'Bjoern Jacob TRITUM GmbH',
