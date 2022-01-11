@@ -1,8 +1,8 @@
 includes:
-    - phpstan-baseline.neon
-    - vendor/saschaegerer/phpstan-typo3/extension.neon
+		- phpstan-baseline.neon
+		- vendor/saschaegerer/phpstan-typo3/extension.neon
 parameters:
-    level: 8
-    paths:
-        - Classes
-        - Configuration
+		level: 8
+		paths:
+				- Classes
+				- Configuration
