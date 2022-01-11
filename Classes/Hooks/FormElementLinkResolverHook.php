@@ -126,6 +126,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
         $renderable->setProperty('_label', $label);
         $renderable->setProperty('_linkText', $translatedLinkText);
         $renderable->setProperty('_pageUid', $pageUid);
+        $renderable->setProperty('_linksProcessed', true);
     }
 
     /**
