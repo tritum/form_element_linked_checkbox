@@ -19,6 +19,8 @@ jobs:
         run: composer install --no-progress
 
       # Linting
+      - name: Lint composer.json
+        run: composer normalize --dry-run
       - name: Lint PHP
         run: composer lint:php -- --dry-run
 
