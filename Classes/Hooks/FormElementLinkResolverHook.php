@@ -20,6 +20,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement;
 use TYPO3\CMS\Form\Domain\Model\Renderable\RootRenderableInterface;
 use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
+use TYPO3\CMS\Form\Domain\Runtime\FormRuntime\Lifecycle\AfterFormStateInitializedInterface;
 use TYPO3\CMS\Form\Service\TranslationService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -29,7 +30,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * @author Elias Häußler <elias@haeussler.dev>
  * @license GPL-2.0-or-later
  */
-class FormElementLinkResolverHook
+class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
 {
     /**
      * @var string Form element type to match
@@ -40,9 +41,39 @@ class FormElementLinkResolverHook
      * Resolve link in label of form elements with type LinkedCheckbox.
      *
      * @param FormRuntime $formRuntime
+     */
+    public function afterFormStateInitialized(FormRuntime $formRuntime): void
+    {
+        $elements = $formRuntime->getFormDefinition()->getElements();
+
+        foreach ($elements as $element) {
+            $this->processCharacterSubstitution($formRuntime, $element);
+        }
+    }
+
+    /**
+     * @param FormRuntime $formRuntime
+     * @param RootRenderableInterface $renderable
+     * @deprecated Use afterFormStateInitialized hook instead
+     */
+    public function beforeRendering(FormRuntime $formRuntime, RootRenderableInterface $renderable): void
+    {
+        trigger_error(
+            'Processing character substitution of checkbox label links using the beforeRendering hook ' .
+            'is deprecated. Use the afterFormStateInitialized hook instead.',
+            E_USER_DEPRECATED
+        );
+
+        $this->processCharacterSubstitution($formRuntime, $renderable);
+    }
+
+    /**
+     * Resolve link in label of form elements with type LinkedCheckbox.
+     *
+     * @param FormRuntime $formRuntime
      * @param RootRenderableInterface $renderable
      */
-    public function beforeRendering(FormRuntime $formRuntime, RootRenderableInterface $renderable)
+    protected function processCharacterSubstitution(FormRuntime $formRuntime, RootRenderableInterface $renderable): void
     {
         $label = $this->translate($renderable, 'label', $formRuntime);
 
