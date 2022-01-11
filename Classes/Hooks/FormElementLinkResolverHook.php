@@ -44,10 +44,10 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      */
     public function afterFormStateInitialized(FormRuntime $formRuntime): void
     {
-        $elements = $formRuntime->getFormDefinition()->getElements();
+        $renderables = $formRuntime->getFormDefinition()->getRenderablesRecursively();
 
-        foreach ($elements as $element) {
-            $this->processCharacterSubstitution($formRuntime, $element);
+        foreach ($renderables as $renderable) {
+            $this->processCharacterSubstitution($formRuntime, $renderable);
         }
     }
 
