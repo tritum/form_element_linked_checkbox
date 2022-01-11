@@ -1,47 +1,48 @@
 {
-    "name": "tritum/form-element-linked-checkbox",
-    "description": "",
-    "type": "typo3-cms-extension",
-    "require": {
-        "typo3/cms-core": "^9.5.30 || ^10.4.20 || ^11.5.0",
-        "typo3/cms-form": "^9.5.30 || ^10.4.20 || ^11.5.0",
-        "typo3/cms-frontend": "^9.5.30 || ^10.4.20 || ^11.5.0"
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^1.3",
-        "saschaegerer/phpstan-typo3": "^1.0",
-        "typo3/coding-standards": "^0.5.0",
-        "ergebnis/composer-normalize": "^2.23"
-    },
-    "license": "GPL-2.0-or-later",
-    "authors": [
-        {
-            "name": "Björn Jacob TRITUM GmbH",
-            "email": "bjoern.jacob@tritum.de"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "TRITUM\\FormElementLinkedCheckbox\\": "Classes/"
-        }
-    },
-    "extra": {
-        "typo3/cms": {
-            "extension-key": "form_element_linked_checkbox"
-        }
-    },
-    "scripts": {
+	"name": "tritum/form-element-linked-checkbox",
+	"description": "",
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
+	"authors": [
+		{
+			"name": "Björn Jacob TRITUM GmbH",
+			"email": "bjoern.jacob@tritum.de"
+		}
+	],
+	"require": {
+		"typo3/cms-core": "^9.5.30 || ^10.4.20 || ^11.5.0",
+		"typo3/cms-form": "^9.5.30 || ^10.4.20 || ^11.5.0",
+		"typo3/cms-frontend": "^9.5.30 || ^10.4.20 || ^11.5.0"
+	},
+	"require-dev": {
+		"ergebnis/composer-normalize": "^2.23",
+		"phpstan/phpstan": "^1.3",
+		"saschaegerer/phpstan-typo3": "^1.0",
+		"typo3/coding-standards": "^0.5.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"TRITUM\\FormElementLinkedCheckbox\\": "Classes/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true,
+			"ergebnis/composer-normalize": true
+		},
+		"sort-packages": true
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "form_element_linked_checkbox"
+		}
+	},
+	"scripts": {
 		"lint": [
 			"@lint:php"
 		],
 		"lint:php": "php-cs-fixer fix",
-        "sca": "phpstan analyse -c phpstan.neon"
-    },
-    "config": {
-        "allow-plugins": {
-            "typo3/class-alias-loader": true,
-            "typo3/cms-composer-installers": true,
-            "ergebnis/composer-normalize": true
-        }
-    }
+		"sca": "phpstan analyse -c phpstan.neon"
+	}
 }
