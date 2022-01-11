@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 namespace TRITUM\FormElementLinkedCheckbox\Hooks;
 
@@ -91,7 +92,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
         }
 
         $properties = $renderable->getProperties();
-        $pageUid = (int) $properties['pageUid'];
+        $pageUid = (int)$properties['pageUid'];
         $translatedLinkText = $this->translate($renderable, 'linkText', $formRuntime);
 
         // Build link if pageUid is valid
@@ -209,7 +210,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
         $filteredValue = $value;
         do {
             $filteredValue = str_replace('%%', '', $filteredValue);
-        } while(strpos($filteredValue, '%%') !== false);
+        } while (strpos($filteredValue, '%%') !== false);
         return strpos($filteredValue, '%') !== false;
     }
 }
