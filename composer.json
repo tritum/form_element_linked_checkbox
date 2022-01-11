@@ -30,5 +30,11 @@
     },
     "scripts": {
         "sca": "phpstan analyse -c phpstan.neon"
+    },
+    "config": {
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        }
     }
 }
