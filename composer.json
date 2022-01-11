@@ -1,6 +1,6 @@
 {
 	"name": "tritum/form-element-linked-checkbox",
-	"description": "",
+	"description": "Adds a new form element which allows the editor to create a checkbox with a linked label text. This is an extension for TYPO3 CMS.",
 	"license": "GPL-2.0-or-later",
 	"type": "typo3-cms-extension",
 	"authors": [
