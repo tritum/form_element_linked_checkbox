@@ -18,6 +18,10 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress
 
+      # Linting
+      - name: Lint PHP
+        run: composer lint:php -- --dry-run
+
       # SCA
       - name: SCA PHP
         run: composer sca -- --error-format github
