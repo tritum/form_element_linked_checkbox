@@ -14,8 +14,8 @@ configuration to your TypoScript template.
 
 Open the TYPO3 form editor and create a new form/open an existing one. Add
 a new element to your form. The modal will list the new custom form element
-"Linked checkbox". Provide a label for the checkbox and select a page you
-want to link to. Furthermore, you have to set a link text.
+"Linked checkbox". Provide a label for the checkbox including the link text.
+Select a page you want to link to.
 
 ### Combination of label and link
 
@@ -29,7 +29,7 @@ Example:
 * Output: `I accept the <a href="/privacy-policy" target="_blank">terms and conditions.</a>`
 
 If want to use the link inside your label, define the link position
-in the label with a character substitution.
+in the label with a character substitution. We highly **recommend** this way.
 
 Example:
 
@@ -37,11 +37,13 @@ Example:
 * Link text: `terms and conditions`
 * Output: `I have read the <a href="/privacy-policy" target="_blank">terms and conditions</a> and accept them.`
 
+> Note: Either way, you have to overwrite your email templates in order to correctly output the data. Check the section below regarding email templates.
+
 #### Link configuration
 
 You can provide additional link configuration which will be used when
 generating the link within the label. Note that this can only be defined
-in the appropriate `.form.yaml` file but not in the Backend module.
+in the appropriate `.form.yaml` file but not in the form editor.
 
 ```yaml
 type: LinkedCheckbox
@@ -72,6 +74,17 @@ renderingOptions:
     parameter: ''
 ```
 
+## Email templates
+
+Since we highly recommend using the character substitution the following assumes
+you are using this way of adding linked checkboxes to your form.
+
+By default, the core templates of the form framework escape any HTML in both email
+and plain text mails. There are two possibile ways to go:
+
+* Remove all HTML by using the `f:format.stripTags()` [ViewHelper](https://docs.typo3.org/other/typo3/view-helper-reference/main/en-us/typo3/fluid/latest/Format/StripTags.html). Securitywise, we recommend doing so.
+* Use `f:format.raw()` to keep the link. Make sure to apply this only to form elements of type `LinkedCheckbox`. For more information, check out the example in our [issue tracker](https://github.com/tritum/form_element_linked_checkbox/issues/23#issuecomment-931191587).
+
 ## Possible improvements or changes
 
 Instead of creating a new form element, the existing `Checkbox` form element
@@ -81,20 +94,21 @@ extension creates a new element.
 At the time of writing this, you have to provide a small JavaScript snippet
 (see `\Resources\Public\JavaScript\Backend\FormEditor\ViewModel.js`). This
 snippet is needed to show the custom form element in the form editor. For
-TYPO3 v9 we are aiming to remove this stumbling block to smoothen the element
-registration.
+future TYPO3 versions we are aiming to remove this stumbling block to smoothen
+the element registration.
 
 ## Credits
 
-This exemplary TYPO3 extension was created by Björn Jacob (https://www.tritum.de).
-The idea was born at the TYPO3 CertiFUNcation Day 2017. The audience of my talk
-kindly asked for such an element. Lightheaded, I said it will not take more
-than 30 minutes to create such an extension. Unfortunately, I could not
-make it in this time. It took my nearly 1.5 hours to come up with all the
-code. The JS part gave me a hard time.
+This TYPO3 extension was created by [Björn Jacob](https://www.tritum.de) and has
+been highly improved by [Elias Häußler](https://haeussler.dev/). The idea was born
+at the TYPO3 CertiFUNcation Day 2017. The audience of my talk kindly asked for
+such an element. Lightheaded, I said it will not take more than 30 minutes to
+create such an extension. Unfortunately, I could not make it in this time.
+It took my nearly 1.5 hours to come up with the initial version code.
+The JS part gave me a hard time.
 
 ## Thank you
 
-Jochen Weiland - TYPOholic at https://jweiland.net - supported this
+Jochen Weiland - TYPOholic at [jweiland.net](https://jweiland.net) - supported this
 challenge in multiple ways. Thanks for being an outstanding part of our
 TYPO3 community.
