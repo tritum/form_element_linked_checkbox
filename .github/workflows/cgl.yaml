@@ -1,0 +1,33 @@
+name: CGL
+on: [push, pull_request]
+
+jobs:
+  cgl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Prepare environment
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          tools: composer:v2
+
+      # Install dependencies
+      - name: Install Composer dependencies
+        run: composer install --no-progress
+
+      # Linting
+      - name: Lint composer.json
+        run: composer normalize --dry-run
+      - name: Lint Editorconfig
+        run: vendor/bin/ec --git-only
+      - name: Lint PHP
+        run: composer lint:php -- --dry-run
+      - name: Lint TypoScript
+        run: composer lint:typoscript -- --fail-on-warnings
+
+      # SCA
+      - name: SCA PHP
+        run: composer sca -- --error-format github

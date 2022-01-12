@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
-    <file t3:id="1471786343" source-language="en" datatype="plaintext" original="messages" date="2016-08-21T20:15:32Z" product-name="form_element_linked_checkbox">
-        <header/>
-        <body>
-            <trans-unit id="formEditor.elements.LinkedCheckbox.pageUid.label" resname="formEditor.elements.LinkedCheckbox.pageUid.label" xml:space="preserve">
-                <source>Page</source>
-            </trans-unit>
-            <trans-unit id="formEditor.elements.LinkedCheckbox.pageUid.buttonLabel" resname="formEditor.elements.LinkedCheckbox.pageUid.buttonLabel" xml:space="preserve">
-                <source>Pages</source>
-            </trans-unit>
-            <trans-unit id="formEditor.elements.LinkedCheckbox.editor.label.linkText" resname="formEditor.elements.LinkedCheckbox.editor.label.linkText" xml:space="preserve">
-                <source>Link text</source>
-            </trans-unit>
-            <trans-unit id="formEditor.elements.LinkedCheckbox.editor.linkText.predefinedDefaults" resname="formEditor.elements.LinkedCheckbox.editor.linkText.predefinedDefaults" xml:space="preserve">
-                <source>more...</source>
-            </trans-unit>
-        </body>
-    </file>
+	<file t3:id="1471786343" source-language="en" datatype="plaintext" original="messages" date="2016-08-21T20:15:32Z" product-name="form_element_linked_checkbox">
+		<header/>
+		<body>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.pageUid.label" resname="formEditor.elements.LinkedCheckbox.pageUid.label" xml:space="preserve">
+				<source>Page</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.pageUid.buttonLabel" resname="formEditor.elements.LinkedCheckbox.pageUid.buttonLabel" xml:space="preserve">
+				<source>Pages</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.label.linkText" resname="formEditor.elements.LinkedCheckbox.editor.label.linkText" xml:space="preserve">
+				<source>Link text</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.linkText.predefinedDefaults" resname="formEditor.elements.LinkedCheckbox.editor.linkText.predefinedDefaults" xml:space="preserve">
+				<source>more...</source>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>

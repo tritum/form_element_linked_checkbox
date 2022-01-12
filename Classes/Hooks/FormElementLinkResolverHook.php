@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 namespace TRITUM\FormElementLinkedCheckbox\Hooks;
 
@@ -91,7 +92,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
         }
 
         $properties = $renderable->getProperties();
-        $pageUid = (int) $properties['pageUid'];
+        $pageUid = (int)$properties['pageUid'];
         $translatedLinkText = $this->translate($renderable, 'linkText', $formRuntime);
 
         // Build link if pageUid is valid
@@ -139,15 +140,21 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      */
     protected function translate(RootRenderableInterface $renderable, string $property, FormRuntime $formRuntime): string
     {
-        return (string) TranslationService::getInstance()->translateFormElementValue($renderable, [$property], $formRuntime);
+        $value = TranslationService::getInstance()->translateFormElementValue($renderable, [$property], $formRuntime);
+
+        if (!is_string($value)) {
+            return '';
+        }
+
+        return $value;
     }
 
     /**
      * Build typolink from given page UID and additional configuration.
      *
-     * @param $linkText
+     * @param string $linkText
      * @param int $pageUid
-     * @param array $additionalAttributes
+     * @param array<string, string|int> $additionalAttributes
      * @return string
      */
     protected function buildLinkFromPageUid(string $linkText, int $pageUid, array $additionalAttributes = []): string
@@ -166,7 +173,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
         // different parameter values according to the TypoScript reference.
         $parameter = $pageUid . ' ';
         if (array_key_exists('parameter', $additionalAttributes)) {
-            $parameter .= (string) $additionalAttributes['parameter'];
+            $parameter .= $additionalAttributes['parameter'];
         } else {
             $parameter .= '_blank';
         }
@@ -203,7 +210,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
         $filteredValue = $value;
         do {
             $filteredValue = str_replace('%%', '', $filteredValue);
-        } while(strpos($filteredValue, '%%') !== false);
+        } while (strpos($filteredValue, '%%') !== false);
         return strpos($filteredValue, '%') !== false;
     }
 }
