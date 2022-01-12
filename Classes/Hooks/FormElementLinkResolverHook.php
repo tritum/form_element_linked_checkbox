@@ -273,6 +273,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
         $configuration = [
             'typolink.' => [
                 'parameter' => trim($parameter),
+                'forceAbsoluteUrl' => true,
             ],
         ];
         if ($additionalAttributes) {
