@@ -15,6 +15,18 @@
 			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.linkText.predefinedDefaults" resname="formEditor.elements.LinkedCheckbox.editor.linkText.predefinedDefaults" xml:space="preserve">
 				<source>more...</source>
 			</trans-unit>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.additionalLinks.label" resname="formEditor.elements.LinkedCheckbox.editor.additionalLinks.label" xml:space="preserve">
+				<source>Additional links</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.additionalLinks.fieldExplanationText" resname="formEditor.elements.LinkedCheckbox.editor.additionalLinks.fieldExplanationText" xml:space="preserve">
+				<source>You can add more links here that should replace placeholders in the checkbox label.</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.linkText.title" resname="formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.linkText.title" xml:space="preserve">
+				<source>Link text</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.pageUid.title" resname="formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.pageUid.title" xml:space="preserve">
+				<source>Page</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

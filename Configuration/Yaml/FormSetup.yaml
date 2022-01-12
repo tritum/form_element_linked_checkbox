@@ -22,6 +22,7 @@ TYPO3:
                   properties:
                     pageUid: ''
                     linkText: 'formEditor.elements.LinkedCheckbox.editor.linkText.predefinedDefaults'
+                    additionalLinks: { }
                 # add new field which allows selection of a page (= link target)
                 editors:
                   300:
@@ -44,6 +45,22 @@ TYPO3:
                     propertyPath: 'properties.linkText'
                     propertyValidators:
                       10: 'NotEmpty'
+                  500:
+                    identifier: 'additionalLinks'
+                    templateName: 'Inspector-PropertyGridEditor'
+                    label: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.label'
+                    propertyPath: 'properties.additionalLinks'
+                    fieldExplanationText: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.fieldExplanationText'
+                    isSortable: true
+                    enableAddRow: true
+                    enableDeleteRow: true
+                    useLabelAsFallbackValue: false
+                    gridColumns:
+                      - name: label
+                        title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.linkText.title'
+                      - name: value
+                        title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.pageUid.title'
+
 
           formEditor:
             # does not work in v10 but does no harm and can be kept for backward compatibility
