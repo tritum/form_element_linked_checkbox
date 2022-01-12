@@ -31,6 +31,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  *
  * @author Elias Häußler <elias@haeussler.dev>
  * @license GPL-2.0-or-later
+ * @internal
  */
 class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
 {
