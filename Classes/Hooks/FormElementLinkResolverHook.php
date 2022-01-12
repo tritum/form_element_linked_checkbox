@@ -85,19 +85,22 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
         $this->formRuntime = $formRuntime;
 
         // Only process linkText parsing if renderable matches given type
-        // and form element label contains any argument flags such as %s.
-        // This also checks if one tries to use the percent sign as regular
-        // character instead of a flag marked for inserting the translated
-        // linkText. It needs to be set as double-percent (%%) substring.
-        if (
-            !$renderable instanceof GenericFormElement ||
-            $renderable->getType() !== $this->type ||
-            !self::needsCharacterSubstitution($label = $this->translate($renderable, ['label']))
-        ) {
+        if (!($renderable instanceof GenericFormElement) || $renderable->getType() !== $this->type) {
             return;
         }
 
+        $label = $this->translate($renderable, ['label']);
         $properties = $renderable->getProperties();
+
+        // Check if form element label contains any argument flags such as %s.
+        // This also checks if one tries to use the percent sign as regular
+        // character instead of a flag marked for inserting the translated
+        // linkText. It needs to be set as double-percent (%%) substring.
+        // If character substitution is NOT requested, enforce the link to
+        // be prepended to the label text.
+        if (!self::needsCharacterSubstitution($label)) {
+            $label .= ' %s';
+        }
 
         // Resolve all label arguments and merge them together in order to
         // use it for later translation of the label. The following
