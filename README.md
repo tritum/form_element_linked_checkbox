@@ -51,9 +51,6 @@ Example:
   - `privacy policy`
 * Output: `I have read the <a href="/terms" target="_blank">terms and conditions</a> and <a href="/privacy-policy" target="_blank">privacy policy</a> and accept them.`
 
-
-> Note: Either way, you have to overwrite your email templates in order to correctly output the data. Check the section below regarding email templates.
-
 #### Link configuration
 
 You can provide additional link configuration which will be used when
@@ -91,17 +88,6 @@ renderingOptions:
   linkConfiguration:
     parameter: ''
 ```
-
-## Email templates
-
-Since we highly recommend using the character substitution the following assumes
-you are using this way of adding linked checkboxes to your form.
-
-By default, the core templates of the form framework escape any HTML in both email
-and plain text mails. There are two possibile ways to go:
-
-* Remove all HTML by using the `f:format.stripTags()` [ViewHelper](https://docs.typo3.org/other/typo3/view-helper-reference/main/en-us/typo3/fluid/latest/Format/StripTags.html). Securitywise, we recommend doing so.
-* Use `f:format.raw()` to keep the link. Make sure to apply this only to form elements of type `LinkedCheckbox`. For more information, check out the example in our [issue tracker](https://github.com/tritum/form_element_linked_checkbox/issues/23#issuecomment-931191587).
 
 ## Possible improvements or changes
 
