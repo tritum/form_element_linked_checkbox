@@ -288,7 +288,7 @@ final class FormElementLinkResolverHook implements AfterFormStateInitializedInte
         $filteredValue = $value;
         do {
             $filteredValue = str_replace('%%', '', $filteredValue);
-        } while (strpos($filteredValue, '%%') !== false);
-        return strpos($filteredValue, '%') !== false;
+        } while (str_contains($filteredValue, '%%'));
+        return str_contains($filteredValue, '%');
     }
 }
