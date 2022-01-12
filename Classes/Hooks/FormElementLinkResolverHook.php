@@ -60,22 +60,6 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
     }
 
     /**
-     * @param FormRuntime $formRuntime
-     * @param RootRenderableInterface $renderable
-     * @deprecated Use afterFormStateInitialized hook instead
-     */
-    public function beforeRendering(FormRuntime $formRuntime, RootRenderableInterface $renderable): void
-    {
-        trigger_error(
-            'Processing character substitution of checkbox label links using the beforeRendering hook ' .
-            'is deprecated. Use the afterFormStateInitialized hook instead.',
-            E_USER_DEPRECATED
-        );
-
-        $this->processCharacterSubstitution($formRuntime, $renderable);
-    }
-
-    /**
      * Resolve link in label of form elements with type LinkedCheckbox.
      *
      * @param FormRuntime $formRuntime
