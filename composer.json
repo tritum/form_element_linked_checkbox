@@ -5,8 +5,16 @@
 	"type": "typo3-cms-extension",
 	"authors": [
 		{
-			"name": "Björn Jacob TRITUM GmbH",
-			"email": "bjoern.jacob@tritum.de"
+			"name": "Björn Jacob",
+			"email": "bjoern.jacob@tritum.de",
+			"homepage": "https://www.tritum.de",
+			"role": "Developer"
+		},
+		{
+			"name": "Elias Häußler",
+			"email": "elias@haeussler.dev",
+			"homepage": "https://haeussler.dev",
+			"role": "Developer"
 		}
 	],
 	"require": {
