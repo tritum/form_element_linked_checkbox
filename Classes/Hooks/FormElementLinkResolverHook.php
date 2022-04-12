@@ -269,7 +269,7 @@ final class FormElementLinkResolverHook implements AfterFormStateInitializedInte
         $contentObject = GeneralUtility::makeInstance(ContentObjectRenderer::class);
         $contentObject->start([], '');
 
-        return $contentObject->stdWrap($linkText, $configuration);
+        return $contentObject->stdWrap($linkText, $configuration) ?: $linkText;
     }
 
     /**
