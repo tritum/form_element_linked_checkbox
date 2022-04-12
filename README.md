@@ -12,6 +12,21 @@ Copy the extension folder to `\typo3conf\ext\ `, upload it via extension
 manager or add it to your composer.json. Add the static TypoScript
 configuration to your TypoScript template.
 
+## Customization
+
+The extension overrides templates for the following views:
+* email to receiver, plain text
+* email to receiver, HTML
+* email to sender, plain text
+* email to sender, HTML
+* summary page
+
+This is necessary to render links correctly. By default, the core templates
+of the form framework escape any HTML in both email and plain text mails.
+Thus, your users would receive mails with broken links.
+
+If you also override those templates, please adopt your files accordingly.
+
 ## Usage
 
 Open the TYPO3 form editor and create a new form/open an existing one. Add
@@ -100,6 +115,22 @@ At the time of writing this, you have to provide a small JavaScript snippet
 snippet is needed to show the custom form element in the form editor. For
 future TYPO3 versions we are aiming to remove this stumbling block to smoothen
 the element registration.
+
+## Versions
+
+| News     | TYPO3     | PHP       | Notes                                 |
+|----------|-----------|-----------|---------------------------------------|
+| master   | 9 - 11    | 7.2 - 8.1 |                                       |
+| 3.x      | 9 - 1     | 7.2 - 8.0 | Breaking changes. See comments below. |
+| 2.x      | 9 - 11    |           |                                       |
+| 1.x      | 8 - 9     |           |                                       |
+
+### Breaking changes version 3.x
+
+Version 3.x includes 3 breaking changes:
+* [!!!][FEATURE] Move link resolving from field partial to hook [(d128090)](https://github.com/tritum/form_element_linked_checkbox/commit/d12809029fd1415e765db323f840c04fdd10e1f2)
+* [!!!][TASK] Drop deprecated hook usage [(90695cf)](https://github.com/tritum/form_element_linked_checkbox/commit/90695cfcdec97a317cea5e3d20fda387700a37cc)
+* [!!!][TASK] Harden visibility and usage of FormElementLinkResolverHook [(4ffb57b)](https://github.com/tritum/form_element_linked_checkbox/commit/4ffb57bc81bf45b7aa28d582aea3e3d7a608dd08)
 
 ## Credits
 
