@@ -31,18 +31,19 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  *
  * @author Elias Häußler <elias@haeussler.dev>
  * @license GPL-2.0-or-later
+ * @internal
  */
-class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
+final class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
 {
     /**
      * @var string Form element type to match
      */
-    protected $type = 'LinkedCheckbox';
+    private $type = 'LinkedCheckbox';
 
     /**
      * @var FormRuntime The current form runtime
      */
-    protected $formRuntime;
+    private $formRuntime;
 
     /**
      * Resolve link in label of form elements with type LinkedCheckbox.
@@ -59,45 +60,32 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
     }
 
     /**
-     * @param FormRuntime $formRuntime
-     * @param RootRenderableInterface $renderable
-     * @deprecated Use afterFormStateInitialized hook instead
-     */
-    public function beforeRendering(FormRuntime $formRuntime, RootRenderableInterface $renderable): void
-    {
-        trigger_error(
-            'Processing character substitution of checkbox label links using the beforeRendering hook ' .
-            'is deprecated. Use the afterFormStateInitialized hook instead.',
-            E_USER_DEPRECATED
-        );
-
-        $this->processCharacterSubstitution($formRuntime, $renderable);
-    }
-
-    /**
      * Resolve link in label of form elements with type LinkedCheckbox.
      *
      * @param FormRuntime $formRuntime
      * @param RootRenderableInterface $renderable
      */
-    protected function processCharacterSubstitution(FormRuntime $formRuntime, RootRenderableInterface $renderable): void
+    private function processCharacterSubstitution(FormRuntime $formRuntime, RootRenderableInterface $renderable): void
     {
         $this->formRuntime = $formRuntime;
 
         // Only process linkText parsing if renderable matches given type
-        // and form element label contains any argument flags such as %s.
-        // This also checks if one tries to use the percent sign as regular
-        // character instead of a flag marked for inserting the translated
-        // linkText. It needs to be set as double-percent (%%) substring.
-        if (
-            !$renderable instanceof GenericFormElement ||
-            $renderable->getType() !== $this->type ||
-            !self::needsCharacterSubstitution($label = $this->translate($renderable, ['label']))
-        ) {
+        if (!($renderable instanceof GenericFormElement) || $renderable->getType() !== $this->type) {
             return;
         }
 
+        $label = $this->translate($renderable, ['label']);
         $properties = $renderable->getProperties();
+
+        // Check if form element label contains any argument flags such as %s.
+        // This also checks if one tries to use the percent sign as regular
+        // character instead of a flag marked for inserting the translated
+        // linkText. It needs to be set as double-percent (%%) substring.
+        // If character substitution is NOT requested, enforce the link to
+        // be prepended to the label text.
+        if (!self::needsCharacterSubstitution($label)) {
+            $label .= ' %s';
+        }
 
         // Resolve all label arguments and merge them together in order to
         // use it for later translation of the label. The following
@@ -147,7 +135,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      * @param GenericFormElement $element
      * @return string
      */
-    protected function buildArgumentFromSingleConfiguration(GenericFormElement $element): string
+    private function buildArgumentFromSingleConfiguration(GenericFormElement $element): string
     {
         $properties = $element->getProperties();
         $pageUid = (int)$properties['pageUid'];
@@ -163,7 +151,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      *
      * @return string[]
      */
-    protected function buildArgumentsFromArrayConfiguration(GenericFormElement $element): array
+    private function buildArgumentsFromArrayConfiguration(GenericFormElement $element): array
     {
         if (!$this->hasAdditionalLinksConfigured($element)) {
             return [];
@@ -192,7 +180,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      * @param int $pageUid
      * @return string
      */
-    protected function buildArgument(GenericFormElement $element, array $linkTextPropertyPath, int $pageUid): string
+    private function buildArgument(GenericFormElement $element, array $linkTextPropertyPath, int $pageUid): string
     {
         $translatedLinkText = $this->translate($element, $linkTextPropertyPath);
         $additionalLinkConfiguration = $element->getRenderingOptions()['linkConfiguration'] ?? [];
@@ -213,7 +201,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      * @param GenericFormElement $element
      * @return bool
      */
-    protected function hasAdditionalLinksConfigured(GenericFormElement $element): bool
+    private function hasAdditionalLinksConfigured(GenericFormElement $element): bool
     {
         $properties = $element->getProperties();
 
@@ -227,7 +215,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      * @param string[] $propertyPath
      * @return string
      */
-    protected function translate(RootRenderableInterface $renderable, array $propertyPath): string
+    private function translate(RootRenderableInterface $renderable, array $propertyPath): string
     {
         $translationService = TranslationService::getInstance();
         $value = $translationService->translateFormElementValue($renderable, $propertyPath, $this->formRuntime);
@@ -247,7 +235,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      * @param array<string, string|int> $additionalAttributes
      * @return string
      */
-    protected function buildLinkFromPageUid(string $linkText, int $pageUid, array $additionalAttributes = []): string
+    private function buildLinkFromPageUid(string $linkText, int $pageUid, array $additionalAttributes = []): string
     {
         if (!$pageUid) {
             return $linkText;
@@ -270,6 +258,7 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
         $configuration = [
             'typolink.' => [
                 'parameter' => trim($parameter),
+                'forceAbsoluteUrl' => true,
             ],
         ];
         if ($additionalAttributes) {
@@ -294,12 +283,12 @@ class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
      * @return bool `true` if character substitution is needed, `false` otherwise
      * @see printf()
      */
-    protected static function needsCharacterSubstitution(string $value): bool
+    private static function needsCharacterSubstitution(string $value): bool
     {
         $filteredValue = $value;
         do {
             $filteredValue = str_replace('%%', '', $filteredValue);
-        } while (strpos($filteredValue, '%%') !== false);
-        return strpos($filteredValue, '%') !== false;
+        } while (str_contains($filteredValue, '%%'));
+        return str_contains($filteredValue, '%');
     }
 }

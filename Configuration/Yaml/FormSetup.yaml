@@ -61,6 +61,15 @@ TYPO3:
                       - name: value
                         title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.pageUid.title'
 
+          finishersDefinition:
+            EmailToReceiver:
+              options:
+                templateRootPaths:
+                  1505042806: 'EXT:form_element_linked_checkbox/Resources/Private/Frontend/Templates/Finishers/Email/'
+            EmailToSender:
+              options:
+                templateRootPaths:
+                  1505042806: 'EXT:form_element_linked_checkbox/Resources/Private/Frontend/Templates/Finishers/Email/'
 
           formEditor:
             # does not work in v10 but does no harm and can be kept for backward compatibility
