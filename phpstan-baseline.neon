@@ -1,6 +1,0 @@
-parameters:
-	ignoreErrors:
-		-
-			message: "#^Right side of \\|\\| is always false\\.$#"
-			count: 1
-			path: Configuration/TCA/Overrides/sys_template.php
