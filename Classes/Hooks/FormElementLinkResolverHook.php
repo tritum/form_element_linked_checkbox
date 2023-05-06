@@ -205,7 +205,7 @@ final class FormElementLinkResolverHook implements AfterFormStateInitializedInte
     {
         $properties = $element->getProperties();
 
-        return is_array($properties['additionalLinks'] ?? null) && [] !== $properties['additionalLinks'];
+        return is_array($properties['additionalLinks'] ?? null) && $properties['additionalLinks'] !== [];
     }
 
     /**
@@ -217,7 +217,7 @@ final class FormElementLinkResolverHook implements AfterFormStateInitializedInte
      */
     private function translate(RootRenderableInterface $renderable, array $propertyPath): string
     {
-        $translationService = TranslationService::getInstance();
+        $translationService = GeneralUtility::makeInstance(TranslationService::class);
         $value = $translationService->translateFormElementValue($renderable, $propertyPath, $this->formRuntime);
 
         if (!is_string($value)) {

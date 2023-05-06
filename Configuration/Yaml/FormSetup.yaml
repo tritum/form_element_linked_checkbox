@@ -72,9 +72,7 @@ TYPO3:
                   1505042806: 'EXT:form_element_linked_checkbox/Resources/Private/Frontend/Templates/Finishers/Email/'
 
           formEditor:
-            # does not work in v10 but does no harm and can be kept for backward compatibility
-            translationFile:
-              10: 'EXT:form/Resources/Private/Language/Database.xlf'
+            translationFiles:
               20: 'EXT:form_element_linked_checkbox/Resources/Private/Language/Database.xlf'
             dynamicRequireJsModules:
               additionalViewModelModules:

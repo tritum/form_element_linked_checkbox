@@ -8,10 +8,10 @@ $EM_CONF['form_element_linked_checkbox'] = [
     'clearCacheOnLoad' => 0,
     'author' => 'Björn Jacob, Elias Häußler',
     'author_email' => 'bjoern.jacob@tritum.de, elias@haeussler.dev',
-    'version' => '3.0.0',
+    'version' => '4.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '9.5.30-11.5.99',
+            'typo3' => '11.5.0-12.4.99',
         ],
         'conflicts' => [],
         'suggests' => [],

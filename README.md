@@ -118,12 +118,13 @@ the element registration.
 
 ## Versions
 
-| News     | TYPO3     | PHP       | Notes                                 |
-|----------|-----------|-----------|---------------------------------------|
-| master   | 9 - 11    | 7.2 - 8.1 |                                       |
-| 3.x      | 9 - 11    | 7.2 - 8.1 | Breaking changes. See comments below. |
-| 2.x      | 9 - 11    |           |                                       |
-| 1.x      | 8 - 9     |           |                                       |
+| News   | TYPO3   | PHP       | Notes                                 |
+|--------|---------|-----------|---------------------------------------|
+| master | 11 - 12 | 7.4 - 8.2 |                                       |
+| 4.x    | 11 - 12 | 7.4 - 8.2 |                                       |
+| 3.x    | 9 - 11  | 7.2 - 8.1 | Breaking changes. See comments below. |
+| 2.x    | 9 - 11  |           |                                       |
+| 1.x    | 8 - 9   |           |                                       |
 
 ### Breaking changes version 3.x
 
