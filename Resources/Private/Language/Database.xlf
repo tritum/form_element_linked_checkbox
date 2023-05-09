@@ -27,6 +27,15 @@
 			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.pageUid.title" resname="formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.pageUid.title" xml:space="preserve">
 				<source>Page</source>
 			</trans-unit>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.label.showInEmail" resname="formEditor.elements.LinkedCheckbox.editor.label.showInEmail" xml:space="preserve">
+				<source>Show in E-mail</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.label.showInEmail.no" resname="formEditor.elements.LinkedCheckbox.editor.label.showInEmail.no" xml:space="preserve">
+				<source>no</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.LinkedCheckbox.editor.label.showInEmail.yes" resname="formEditor.elements.LinkedCheckbox.editor.label.showInEmail.yes" xml:space="preserve">
+				<source>yes</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
