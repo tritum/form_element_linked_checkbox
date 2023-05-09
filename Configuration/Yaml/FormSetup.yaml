@@ -60,7 +60,18 @@ TYPO3:
                         title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.linkText.title'
                       - name: value
                         title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.pageUid.title'
-
+                  600:
+                    identifier: 'showInEmail'
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.LinkedCheckbox.editor.label.showInEmail'
+                    propertyPath: properties.showInEmail
+                    selectOptions:
+                      10:
+                        value: 0
+                        label: 'formEditor.elements.LinkedCheckbox.editor.label.showInEmail.no'
+                      20:
+                        value: 1
+                        label: 'formEditor.elements.LinkedCheckbox.editor.label.showInEmail.yes'
           finishersDefinition:
             EmailToReceiver:
               options:
