@@ -1,4 +1,10 @@
+<!-- Generated with 🧡 at typo3-badges.dev -->
+![TYPO3 extension](https://typo3-badges.dev/badge/form_element_linked_checkbox/extension/shields.svg)
+![Total downloads](https://typo3-badges.dev/badge/form_element_linked_checkbox/downloads/shields.svg)
+![Stability](https://typo3-badges.dev/badge/form_element_linked_checkbox/stability/shields.svg)
 [![CGL](https://github.com/tritum/form_element_linked_checkbox/actions/workflows/cgl.yaml/badge.svg)](https://github.com/tritum/form_element_linked_checkbox/actions/workflows/cgl.yaml)
+![TYPO3 versions](https://typo3-badges.dev/badge/form_element_linked_checkbox/typo3/shields.svg)
+![Latest version](https://typo3-badges.dev/badge/form_element_linked_checkbox/version/shields.svg)
 
 # Custom form element "Linked checkbox"
 
@@ -147,3 +153,5 @@ The JS part gave me a hard time.
 Jochen Weiland - TYPOholic at [jweiland.net](https://jweiland.net) - supported this
 challenge in multiple ways. Thanks for being an outstanding part of our
 TYPO3 community.
+
+Elias Häußler - Best man, providing awesome PRs and providing the beautiful [TYPO3 badges](https://typo3-badges.dev). Use them. Give him some kudos!
