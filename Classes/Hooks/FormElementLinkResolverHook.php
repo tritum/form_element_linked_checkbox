@@ -217,7 +217,7 @@ final class FormElementLinkResolverHook
      */
     private function translate(RootRenderableInterface $renderable, array $propertyPath): string
     {
-        $translationService = TranslationService::getInstance();
+        $translationService = GeneralUtility::makeInstance(TranslationService::class);
         $value = $translationService->translateFormElementValue($renderable, $propertyPath, $this->formRuntime);
 
         if (!is_string($value)) {
