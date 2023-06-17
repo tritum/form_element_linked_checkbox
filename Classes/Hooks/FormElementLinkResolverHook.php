@@ -20,9 +20,9 @@ namespace TRITUM\FormElementLinkedCheckbox\Hooks;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement;
+use TYPO3\CMS\Form\Domain\Model\FormElements\Page;
 use TYPO3\CMS\Form\Domain\Model\Renderable\RootRenderableInterface;
 use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
-use TYPO3\CMS\Form\Domain\Runtime\FormRuntime\Lifecycle\AfterFormStateInitializedInterface;
 use TYPO3\CMS\Form\Service\TranslationService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -33,7 +33,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * @license GPL-2.0-or-later
  * @internal
  */
-final class FormElementLinkResolverHook implements AfterFormStateInitializedInterface
+final class FormElementLinkResolverHook
 {
     /**
      * @var string Form element type to match
@@ -47,16 +47,16 @@ final class FormElementLinkResolverHook implements AfterFormStateInitializedInte
 
     /**
      * Resolve link in label of form elements with type LinkedCheckbox.
-     *
-     * @param FormRuntime $formRuntime
      */
-    public function afterFormStateInitialized(FormRuntime $formRuntime): void
+    public function afterInitializeCurrentPage(FormRuntime $formRuntime, ?Page $currentPage): ?Page
     {
         $renderables = $formRuntime->getFormDefinition()->getRenderablesRecursively();
 
         foreach ($renderables as $renderable) {
             $this->processCharacterSubstitution($formRuntime, $renderable);
         }
+
+        return $currentPage;
     }
 
     /**
@@ -205,7 +205,7 @@ final class FormElementLinkResolverHook implements AfterFormStateInitializedInte
     {
         $properties = $element->getProperties();
 
-        return is_array($properties['additionalLinks'] ?? null) && [] !== $properties['additionalLinks'];
+        return is_array($properties['additionalLinks'] ?? null) && $properties['additionalLinks'] !== [];
     }
 
     /**
