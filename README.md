@@ -12,11 +12,19 @@ This TYPO3 extension adds a custom form element "Linked checkbox" to the
 TYPO3 form framework. The user is able to define the link target and the
 link text.
 
-## Install
+# Known incompatibilities
 
-Copy the extension folder to `\typo3conf\ext\ `, upload it via extension
-manager or add it to your composer.json. Add the static TypoScript
-configuration to your TypoScript template.
+This extension is not fully compatible with [EXT:form-mailtext](https://github.com/kitzberger/form-mailtext).
+Both extensions override the same Fluid templates. Create a copy within your
+site package, adapt the template accordingly and configure TYPO3 properly to
+use this template.
+
+# Installation and configuration
+
+## Preferred Installation
+
+1. Require the extension via composer.
+2. Add the static TypoScript configuration to your TypoScript template.
 
 ## Customization
 
@@ -127,10 +135,15 @@ the element registration.
 | News   | TYPO3   | PHP       | Notes                                 |
 |--------|---------|-----------|---------------------------------------|
 | master | 11 - 12 | 7.4 - 8.2 |                                       |
-| 4.x    | 11 - 12 | 7.4 - 8.2 |                                       |
+| 4.x    | 11 - 12 | 7.4 - 8.2 | Breaking changes. See comments below. |
 | 3.x    | 9 - 11  | 7.2 - 8.1 | Breaking changes. See comments below. |
 | 2.x    | 9 - 11  |           |                                       |
 | 1.x    | 8 - 9   |           |                                       |
+
+### Breaking changes version 4.x
+
+* The upcomoing version 4.x includes atm 1 breaking change:
+* [!!!][BUGFIX] Switch EXT:form hook to respect applied variants [(543830b)](https://github.com/tritum/form_element_linked_checkbox/commit/543830b3176220b39ea6c5128520b015c65176b9)
 
 ### Breaking changes version 3.x
 
@@ -146,7 +159,7 @@ been highly improved by [Elias Häußler](https://haeussler.dev/). The idea was 
 at the TYPO3 CertiFUNcation Day 2017. The audience of my talk kindly asked for
 such an element. Lightheaded, I said it will not take more than 30 minutes to
 create such an extension. Unfortunately, I could not make it in this time.
-It took my nearly 1.5 hours to come up with the initial version code.
+It took my 1.5 hours to come up with the initial version code.
 The JS part gave me a hard time.
 
 ## Thank you
