@@ -142,12 +142,12 @@ the element registration.
 
 ### Breaking changes version 4.x
 
-* The upcomoing version 4.x includes atm 1 breaking change:
+Version 4.x includes the following breaking changes:
 * [!!!][BUGFIX] Switch EXT:form hook to respect applied variants [(543830b)](https://github.com/tritum/form_element_linked_checkbox/commit/543830b3176220b39ea6c5128520b015c65176b9)
 
 ### Breaking changes version 3.x
 
-Version 3.x includes 3 breaking changes:
+Version 3.x includes the following breaking changes:
 * [!!!][FEATURE] Move link resolving from field partial to hook [(d128090)](https://github.com/tritum/form_element_linked_checkbox/commit/d12809029fd1415e765db323f840c04fdd10e1f2)
 * [!!!][TASK] Drop deprecated hook usage [(90695cf)](https://github.com/tritum/form_element_linked_checkbox/commit/90695cfcdec97a317cea5e3d20fda387700a37cc)
 * [!!!][TASK] Harden visibility and usage of FormElementLinkResolverHook [(4ffb57b)](https://github.com/tritum/form_element_linked_checkbox/commit/4ffb57bc81bf45b7aa28d582aea3e3d7a608dd08)
