@@ -73,9 +73,9 @@ TYPO3:
 
           formEditor:
             translationFiles:
-              20: 'EXT:form_element_linked_checkbox/Resources/Private/Language/Database.xlf'
+              1687159009: 'EXT:form_element_linked_checkbox/Resources/Private/Language/Database.xlf'
             dynamicRequireJsModules:
               additionalViewModelModules:
-                - 'TYPO3/CMS/FormElementLinkedCheckbox/Backend/FormEditor/ViewModel'
+                1687159242: 'TYPO3/CMS/FormElementLinkedCheckbox/Backend/FormEditor/ViewModel'
             formEditorPartials:
               FormElement-LinkedCheckbox: 'Stage/SimpleTemplate'
