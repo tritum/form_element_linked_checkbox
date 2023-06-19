@@ -143,6 +143,7 @@ the element registration.
 ### Breaking changes version 4.x
 
 Version 4.x includes the following breaking changes:
+* [!!!][TASK] Use timestamps as keys [(1feab28)](https://github.com/tritum/form_element_linked_checkbox/commit/1feab281c91c77b7748b4292d1b405ea118be3d2)
 * [!!!][BUGFIX] Switch EXT:form hook to respect applied variants [(543830b)](https://github.com/tritum/form_element_linked_checkbox/commit/543830b3176220b39ea6c5128520b015c65176b9)
 
 ### Breaking changes version 3.x
