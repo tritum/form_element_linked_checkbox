@@ -25,6 +25,8 @@ TYPO3:
                     additionalLinks: { }
                 # add new field which allows selection of a page (= link target)
                 editors:
+                  200:
+                    templateName: 'Inspector-TextareaEditor'
                   300:
                     identifier: 'pageUid'
                     templateName: 'Inspector-Typo3WinBrowserEditor'
