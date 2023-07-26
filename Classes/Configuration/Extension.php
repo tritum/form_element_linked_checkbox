@@ -24,7 +24,9 @@ declare(strict_types=1);
 namespace TRITUM\FormElementLinkedCheckbox\Configuration;
 
 use TRITUM\FormElementLinkedCheckbox\Hooks\FormElementLinkResolverHook;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Extension
@@ -48,6 +50,18 @@ final class Extension
                 }
             }
         '));
+
+        if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() === 11) {
+            ExtensionManagementUtility::addTypoScriptSetup(trim('
+                module.tx_form {
+                    settings {
+                        yamlConfigurations {
+                            1690355809 = EXT:form_element_linked_checkbox/Configuration/Yaml/FormSetupV11.yaml
+                        }
+                    }
+                }
+            '));
+        }
     }
 
     public static function registerHooks(): void

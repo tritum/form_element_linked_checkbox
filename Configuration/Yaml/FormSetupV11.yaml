@@ -1,0 +1,9 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formEditor:
+            dynamicRequireJsModules:
+              additionalViewModelModules:
+                1687159242: 'TYPO3/CMS/FormElementLinkedCheckbox/Backend/FormEditor/ViewModel'
