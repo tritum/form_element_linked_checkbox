@@ -76,8 +76,8 @@ TYPO3:
           formEditor:
             translationFiles:
               1687159009: 'EXT:form_element_linked_checkbox/Resources/Private/Language/Database.xlf'
-            dynamicRequireJsModules:
+            dynamicJavaScriptModules:
               additionalViewModelModules:
-                1687159242: 'TYPO3/CMS/FormElementLinkedCheckbox/Backend/FormEditor/ViewModel'
+                1687159242: '@tritum/form-element-linked-checkbox/backend/form-editor/view-model.js'
             formEditorPartials:
               FormElement-LinkedCheckbox: 'Stage/SimpleTemplate'

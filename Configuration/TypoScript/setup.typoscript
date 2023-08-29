@@ -5,3 +5,12 @@ plugin.tx_form {
     }
   }
 }
+[typo3.branch == "11.5"]
+  plugin.tx_form {
+    settings {
+      yamlConfigurations {
+        1690355809 = EXT:form_element_linked_checkbox/Configuration/Yaml/FormSetupV11.yaml
+      }
+    }
+  }
+[global]
