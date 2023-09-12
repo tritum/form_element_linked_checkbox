@@ -121,7 +121,7 @@ final class FormElementLinkResolverHook
         // to allow other hooks making use of these ones
         $renderable->setProperty('_label', $label);
         $renderable->setProperty('_linkText', $singleLinkArgument);
-        $renderable->setProperty('_pageUid', (int)$properties['pageUid']);
+        $renderable->setProperty('_pageUid', (int)($properties['pageUid'] ?? 0));
         $renderable->setProperty('_additionalLinks', $additionalLinkArguments);
         $renderable->setProperty('_linksProcessed', true);
     }
@@ -138,7 +138,7 @@ final class FormElementLinkResolverHook
     private function buildArgumentFromSingleConfiguration(GenericFormElement $element): string
     {
         $properties = $element->getProperties();
-        $pageUid = (int)$properties['pageUid'];
+        $pageUid = (int)($properties['pageUid'] ?? 0);
 
         return $this->buildArgument($element, ['linkText'], $pageUid);
     }
