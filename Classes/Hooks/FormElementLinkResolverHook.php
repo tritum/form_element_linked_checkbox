@@ -46,17 +46,11 @@ final class FormElementLinkResolverHook
     private $formRuntime;
 
     /**
-     * Resolve link in label of form elements with type LinkedCheckbox.
+     * Resolve link in label for form elements with type LinkedCheckbox
      */
-    public function afterInitializeCurrentPage(FormRuntime $formRuntime, ?Page $currentPage): ?Page
+    public function beforeRendering(FormRuntime $formRuntime, RootRenderableInterface $renderable)
     {
-        $renderables = $formRuntime->getFormDefinition()->getRenderablesRecursively();
-
-        foreach ($renderables as $renderable) {
-            $this->processCharacterSubstitution($formRuntime, $renderable);
-        }
-
-        return $currentPage;
+        $this->processCharacterSubstitution($formRuntime, $renderable);
     }
 
     /**
