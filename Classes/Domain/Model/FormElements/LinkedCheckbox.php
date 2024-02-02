@@ -28,6 +28,18 @@ class LinkedCheckbox extends AbstractFormElement
         return $this->getProperties()['_processedLabel'];
     }
 
+    public function setOptions(array $options, bool $resetValidators = false)
+    {
+        parent::setOptions($options, $resetValidators);
+
+        // Currently, $resetValidators is only `true` when variants are being
+        // applied. Its the only place where we can process label before finishers
+        // without modifying core classes.
+        if ($resetValidators) {
+            $this->processCharacterSubstitution();
+        }
+    }
+
     public function processCharacterSubstitution()
     {
         $this->realLabel = true;
