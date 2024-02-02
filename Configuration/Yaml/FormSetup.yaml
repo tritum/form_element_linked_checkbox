@@ -62,6 +62,7 @@ TYPO3:
                         title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.linkText.title'
                       - name: value
                         title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.pageUid.title'
+              implementationClassName: TRITUM\FormElementLinkedCheckbox\Domain\Model\FormElements\LinkedCheckbox
 
           finishersDefinition:
             EmailToReceiver:
