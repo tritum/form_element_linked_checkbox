@@ -20,9 +20,9 @@
 	"require": {
 		"php": "^7.4 || ^8.0",
 		"symfony/polyfill-php80": "^1.15",
-		"typo3/cms-core": "^11.5.0 || ^12.4.0",
-		"typo3/cms-form": "^11.5.0 || ^12.4.0",
-		"typo3/cms-frontend": "^11.5.0 || ^12.4.0"
+		"typo3/cms-core": "^11.5.0 || ^12.4.0 || ^13.3.0",
+		"typo3/cms-form": "^11.5.0 || ^12.4.0 || ^13.3.0",
+		"typo3/cms-frontend": "^11.5.0 || ^12.4.0 || ^13.3.0"
 	},
 	"require-dev": {
 		"armin/editorconfig-cli": "^1.5",
