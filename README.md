@@ -23,8 +23,11 @@ use this template.
 
 ## Preferred Installation
 
-1. Require the extension via composer.
-2. Add the static TypoScript configuration to your TypoScript template.
+#. Require the extension via composer.
+#. Add the site set `tritum/form-element-linked-checkbox` to the dependencies
+   of your site packages site set (TYPO3 v13 and above).
+#. Or add the static TypoScript configuration to your TypoScript template
+   (TYPO3 v12 and below).
 
 ## Customization
 
