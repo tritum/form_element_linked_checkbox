@@ -1,0 +1,4 @@
+name: tritum/form-element-linked-checkbox
+label: "Form: Linked checkbox element"
+dependencies:
+  - typo3/form
