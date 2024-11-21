@@ -1,83 +1,80 @@
-TYPO3:
-  CMS:
-    Form:
-      prototypes:
-        standard:
-          formElementsDefinition:
-            Form:
-              renderingOptions:
-                partialRootPaths:
-                  1505042806: 'EXT:form_element_linked_checkbox/Resources/Private/Frontend/Partials/'
+prototypes:
+  standard:
+    formElementsDefinition:
+      Form:
+        renderingOptions:
+          partialRootPaths:
+            1505042806: 'EXT:form_element_linked_checkbox/Resources/Private/Frontend/Partials/'
 
-            LinkedCheckbox:
-              # inherit configuration from checkbox element
-              __inheritances:
-                10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Checkbox'
-              formEditor:
-                label: 'Linked checkbox'
-                groupSorting: 150
-                properties:
-                  pageUid: ''
-                predefinedDefaults:
-                  properties:
-                    pageUid: ''
-                    linkText: 'formEditor.elements.LinkedCheckbox.editor.linkText.predefinedDefaults'
-                    additionalLinks: { }
-                # add new field which allows selection of a page (= link target)
-                editors:
-                  200:
-                    templateName: 'Inspector-TextareaEditor'
-                  300:
-                    identifier: 'pageUid'
-                    templateName: 'Inspector-Typo3WinBrowserEditor'
-                    label: 'formEditor.elements.LinkedCheckbox.pageUid.label'
-                    buttonLabel: 'formEditor.elements.LinkedCheckbox.pageUid.buttonLabel'
-                    browsableType: pages
-                    iconIdentifier: apps-pagetree-page-default
-                    # very important setting -> defines the written form definition
-                    propertyPath: 'properties.pageUid'
-                    propertyValidatorsMode: 'OR'
-                    propertyValidators:
-                      10: 'Integer'
-                      20: 'FormElementIdentifierWithinCurlyBracesExclusive'
-                  400:
-                    identifier: 'linkText'
-                    templateName: 'Inspector-TextEditor'
-                    label: 'formEditor.elements.LinkedCheckbox.editor.label.linkText'
-                    propertyPath: 'properties.linkText'
-                    propertyValidators:
-                      10: 'NotEmpty'
-                  500:
-                    identifier: 'additionalLinks'
-                    templateName: 'Inspector-PropertyGridEditor'
-                    label: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.label'
-                    propertyPath: 'properties.additionalLinks'
-                    fieldExplanationText: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.fieldExplanationText'
-                    isSortable: true
-                    enableAddRow: true
-                    enableDeleteRow: true
-                    useLabelAsFallbackValue: false
-                    gridColumns:
-                      - name: label
-                        title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.linkText.title'
-                      - name: value
-                        title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.pageUid.title'
+      LinkedCheckbox:
+        # inherit configuration from checkbox element
+        __inheritances:
+          10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Checkbox'
+        formEditor:
+          label: 'Linked checkbox'
+          groupSorting: 150
+          properties:
+            pageUid: ''
+          predefinedDefaults:
+            properties:
+              pageUid: ''
+              linkText: 'formEditor.elements.LinkedCheckbox.editor.linkText.predefinedDefaults'
+              additionalLinks: { }
+          # add new field which allows selection of a page (= link target)
+          editors:
+            200:
+              templateName: 'Inspector-TextareaEditor'
+            300:
+              identifier: 'pageUid'
+              templateName: 'Inspector-Typo3WinBrowserEditor'
+              label: 'formEditor.elements.LinkedCheckbox.pageUid.label'
+              buttonLabel: 'formEditor.elements.LinkedCheckbox.pageUid.buttonLabel'
+              browsableType: pages
+              iconIdentifier: apps-pagetree-page-default
+              # very important setting -> defines the written form definition
+              propertyPath: 'properties.pageUid'
+              propertyValidatorsMode: 'OR'
+              propertyValidators:
+                10: 'Integer'
+                20: 'FormElementIdentifierWithinCurlyBracesExclusive'
+            400:
+              identifier: 'linkText'
+              templateName: 'Inspector-TextEditor'
+              label: 'formEditor.elements.LinkedCheckbox.editor.label.linkText'
+              propertyPath: 'properties.linkText'
+              propertyValidators:
+                10: 'NotEmpty'
+            500:
+              identifier: 'additionalLinks'
+              templateName: 'Inspector-PropertyGridEditor'
+              label: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.label'
+              propertyPath: 'properties.additionalLinks'
+              fieldExplanationText: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.fieldExplanationText'
+              isSortable: true
+              enableAddRow: true
+              enableDeleteRow: true
+              useLabelAsFallbackValue: false
+              gridColumns:
+                - name: label
+                  title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.linkText.title'
+                - name: value
+                  title: 'formEditor.elements.LinkedCheckbox.editor.additionalLinks.gridColumns.pageUid.title'
 
-          finishersDefinition:
-            EmailToReceiver:
-              options:
-                templateRootPaths:
-                  1505042806: 'EXT:form_element_linked_checkbox/Resources/Private/Frontend/Templates/Finishers/Email/'
-            EmailToSender:
-              options:
-                templateRootPaths:
-                  1505042806: 'EXT:form_element_linked_checkbox/Resources/Private/Frontend/Templates/Finishers/Email/'
+    finishersDefinition:
+      EmailToReceiver:
+        options:
+          templateRootPaths:
+            1505042806: 'EXT:form_element_linked_checkbox/Resources/Private/Frontend/Templates/Finishers/Email/'
+      EmailToSender:
+        options:
+          templateRootPaths:
+            1505042806: 'EXT:form_element_linked_checkbox/Resources/Private/Frontend/Templates/Finishers/Email/'
 
-          formEditor:
-            translationFiles:
-              1687159009: 'EXT:form_element_linked_checkbox/Resources/Private/Language/Database.xlf'
-            dynamicRequireJsModules:
-              additionalViewModelModules:
-                1687159242: 'TYPO3/CMS/FormElementLinkedCheckbox/Backend/FormEditor/ViewModel'
-            formEditorPartials:
-              FormElement-LinkedCheckbox: 'Stage/SimpleTemplate'
+    formEditor:
+      translationFiles:
+        1687159009: 'EXT:form_element_linked_checkbox/Resources/Private/Language/Database.xlf'
+      dynamicJavaScriptModules:
+        additionalViewModelModules:
+          1505042806: '@tritum/form-element-linked-checkbox/backend/form-editor/view-model.js'
+      formEditorPartials:
+        FormElement-LinkedCheckbox: 'Stage/SimpleTemplate'
