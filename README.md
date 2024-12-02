@@ -138,11 +138,16 @@ the element registration.
 | News   | TYPO3   | PHP       | Notes                                     |
 |--------|---------|-----------|-------------------------------------------|
 | master | 12 - 13 | 8.1 - 8.3 |                                           |
-| 5.x    | 12 - 13 | 8.1 - 8.3 | [!!!]Breaking: Drop support for TYPO3 v11 |
+| 5.x    | 12 - 13 | 8.1 - 8.3 | Breaking changes. See comments below.     |
 | 4.x    | 11 - 12 | 7.4 - 8.2 | Breaking changes. See comments below.     |
 | 3.x    | 9 - 11  | 7.2 - 8.1 | Breaking changes. See comments below.     |
 | 2.x    | 9 - 11  |           |                                           |
 | 1.x    | 8 - 9   |           |                                           |
+
+### Breaking changes version 5.x
+
+Version 4.x includes the following breaking changes:
+* [!!!][TASK] Allow TYPO3 v13, drop TYPO3 v11 support [(60c647d)](https://github.com/olforestman/form_element_linked_checkbox/commit/60c647d8137f95891f96dbcb3ff2b70edfe24aa2)
 
 ### Breaking changes version 4.x
 
@@ -159,7 +164,7 @@ Version 3.x includes the following breaking changes:
 
 ## Credits
 
-This TYPO3 extension was created by [Björn Jacob](https://www.tritum.de) and has
+This TYPO3 extension was created by [Björn Jacob](https://dreistrom.land) and has
 been highly improved by [Elias Häußler](https://haeussler.dev/). The idea was born
 at the TYPO3 CertiFUNcation Day 2017. The audience of my talk kindly asked for
 such an element. Lightheaded, I said it will not take more than 30 minutes to
