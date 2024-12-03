@@ -146,7 +146,7 @@ the element registration.
 
 ### Breaking changes version 5.x
 
-Version 4.x includes the following breaking changes:
+Version 5.x includes the following breaking changes:
 * [!!!][TASK] Allow TYPO3 v13, drop TYPO3 v11 support [(60c647d)](https://github.com/olforestman/form_element_linked_checkbox/commit/60c647d8137f95891f96dbcb3ff2b70edfe24aa2)
 
 ### Breaking changes version 4.x
