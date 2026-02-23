@@ -5,13 +5,12 @@ $EM_CONF['form_element_linked_checkbox'] = [
     'description' => 'Adds a new form element which allows the editor to create a checkbox with a linked label text.',
     'category' => 'fe',
     'state' => 'stable',
-    'clearCacheOnLoad' => 0,
-    'author' => 'Björn Jacob, Elias Häußler',
-    'author_email' => 'bjoern.jacob@tritum.de, elias@haeussler.dev',
-    'version' => '5.0.2',
+    'author' => 'Björn Jacob, Elias Häußler, dreistrom.land',
+    'author_email' => 'bjoern.jacob@tritum.de, elias@haeussler.dev, hello@dreistrom.land',
+    'version' => '6.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '12.4.0-13.4.99',
+            'typo3' => '13.4.0-14.4.99',
         ],
         'conflicts' => [],
         'suggests' => [],

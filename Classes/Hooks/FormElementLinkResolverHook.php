@@ -38,12 +38,12 @@ final class FormElementLinkResolverHook
     /**
      * @var string Form element type to match
      */
-    private $type = 'LinkedCheckbox';
+    private string $type = 'LinkedCheckbox';
 
     /**
      * @var FormRuntime The current form runtime
      */
-    private $formRuntime;
+    private ?FormRuntime $formRuntime = null;
 
     /**
      * Resolve link in label of form elements with type LinkedCheckbox.
