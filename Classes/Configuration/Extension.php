@@ -50,6 +50,11 @@ final class Extension
         '));
     }
 
+    /**
+     * @todo Remove hook when dropping v13 support.
+     * @see https://docs.typo3.org/c/typo3/cms-core/main/en-us//Changelog/14.0/Breaking-107566-RemovedAfterInitializeCurrentPageHook.html
+     * @see https://docs.typo3.org/c/typo3/cms-core/main/en-us//Changelog/14.0/Feature-107566-IntroducePSR14AfterCurrentPageIsResolvedEvent.html#feature-107566-1759226649
+     */
     public static function registerHooks(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterInitializeCurrentPage'][1571076908] = FormElementLinkResolverHook::class;

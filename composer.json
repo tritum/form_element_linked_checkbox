@@ -63,7 +63,7 @@
             "@lint:typoscript"
         ],
         "lint:editorconfig": "ec --fix --git-only",
-        "lint:php": "php-cs-fixer fix",
+        "lint:php": "php-cs-fixer fix -v",
         "lint:typoscript": "typoscript-lint -c typoscript-lint.yml",
         "sca": "phpstan analyse -c phpstan.neon"
     }

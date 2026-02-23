@@ -1,4 +1,9 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers" data-namespace-typo3-fluid="true">
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
 <formvh:renderRenderable renderable="{page}">
     <fieldset class="form-group">
         <f:if condition="{page.label}">
@@ -14,7 +19,12 @@
                                 <f:then>
                                     <f:if condition="{0: formValue.element.type} == {0: 'ImageUpload'}">
                                         <f:then>
-                                            <f:image image="{formValue.value}" maxWidth="{formValue.element.properties.imageMaxWidth}" maxHeight="{formValue.element.properties.imageMaxHeight}" alt="{formvh:translateElementProperty(element: formValue.element, property: 'altText')}" />
+                                            <f:image
+                                                image="{formValue.value}"
+                                                maxWidth="{formValue.element.properties.imageMaxWidth}"
+                                                maxHeight="{formValue.element.properties.imageMaxHeight}"
+                                                alt="{formvh:translateElementProperty(element: formValue.element, property: 'altText')}"
+                                            />
                                         </f:then>
                                         <f:else>
                                             <f:if condition="{formValue.isMultiValue}">
@@ -43,4 +53,5 @@
         </div>
     </fieldset>
 </formvh:renderRenderable>
+
 </html>
