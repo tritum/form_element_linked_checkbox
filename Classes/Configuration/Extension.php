@@ -35,7 +35,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  */
 final class Extension
 {
-    public const string KEY = 'form_element_linked_checkbox';
+    public const KEY = 'form_element_linked_checkbox';
 
     public static function addTypoScriptSetup(): void
     {
