@@ -25,9 +25,8 @@ use this template.
 
 1. Require the extension via composer.
 2. Add the site set `tritum/form-element-linked-checkbox` to the dependencies
-   of your site packages site set (TYPO3 v13).
-   Or add the static TypoScript configuration to your TypoScript template
-   (TYPO3 v12 and TYPO3 v13).
+   of your site packages site set (recommended).
+   Or add the static TypoScript configuration to your TypoScript template.
 
 ## Customization
 
@@ -137,12 +136,17 @@ the element registration.
 
 | News   | TYPO3   | PHP       | Notes                                     |
 |--------|---------|-----------|-------------------------------------------|
-| master | 12 - 13 | 8.1 - 8.3 |                                           |
+| 6.x    | 13 - 14 | 8.2 - 8.5 | Breaking changes. See comments below.     |
 | 5.x    | 12 - 13 | 8.1 - 8.3 | Breaking changes. See comments below.     |
 | 4.x    | 11 - 12 | 7.4 - 8.2 | Breaking changes. See comments below.     |
 | 3.x    | 9 - 11  | 7.2 - 8.1 | Breaking changes. See comments below.     |
 | 2.x    | 9 - 11  |           |                                           |
 | 1.x    | 8 - 9   |           |                                           |
+
+### Breaking changes version 6.x
+
+Version 6.x includes the following breaking changes:
+* [!!!][TASK] Allow TYPO3 v14, drop TYPO3 v12 support [(3448bc5)](https://github.com/dreistromland-tj/form_element_linked_checkbox/commit/3448bc5184f0b0246644a232e128ba21f33e736e)
 
 ### Breaking changes version 5.x
 
