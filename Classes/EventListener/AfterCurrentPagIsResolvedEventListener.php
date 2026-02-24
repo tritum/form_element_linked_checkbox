@@ -15,25 +15,19 @@ declare(strict_types=1);
  * The TYPO3 project - inspiring people to share!
  */
 
-namespace TRITUM\FormElementLinkedCheckbox\Hooks;
+namespace TRITUM\FormElementLinkedCheckbox\EventListener;
 
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement;
-use TYPO3\CMS\Form\Domain\Model\FormElements\Page;
 use TYPO3\CMS\Form\Domain\Model\Renderable\RootRenderableInterface;
 use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
+use TYPO3\CMS\Form\Event\AfterCurrentPageIsResolvedEvent;
 use TYPO3\CMS\Form\Service\TranslationService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
-/**
- * Form rendering hook to resolve links in label of LinkedCheckbox elements.
- *
- * @author Elias Häußler <elias@haeussler.dev>
- * @license GPL-2.0-or-later
- * @internal
- */
-final class FormElementLinkResolverHook
+class AfterCurrentPagIsResolvedEventListener
 {
     /**
      * @var string Form element type to match
@@ -45,30 +39,24 @@ final class FormElementLinkResolverHook
      */
     private FormRuntime $formRuntime;
 
-    /**
-     * Resolve link in label of form elements with type LinkedCheckbox.
-     */
-    public function afterInitializeCurrentPage(FormRuntime $formRuntime, ?Page $currentPage): ?Page
+    #[AsEventListener('form-element-linked-checkbox/after-current-page-is-resolved-event')]
+    public function __invoke(AfterCurrentPageIsResolvedEvent $event): void
     {
-        $renderables = $formRuntime->getFormDefinition()->getRenderablesRecursively();
+        $this->formRuntime = $event->formRuntime;
+        $renderables = $this->formRuntime->getFormDefinition()->getRenderablesRecursively();
 
         foreach ($renderables as $renderable) {
-            $this->processCharacterSubstitution($formRuntime, $renderable);
+            $this->processCharacterSubstitution($renderable);
         }
-
-        return $currentPage;
     }
 
     /**
      * Resolve link in label of form elements with type LinkedCheckbox.
      *
-     * @param FormRuntime $formRuntime
      * @param RootRenderableInterface $renderable
      */
-    private function processCharacterSubstitution(FormRuntime $formRuntime, RootRenderableInterface $renderable): void
+    private function processCharacterSubstitution(RootRenderableInterface $renderable): void
     {
-        $this->formRuntime = $formRuntime;
-
         // Only process linkText parsing if renderable matches given type
         if (!($renderable instanceof GenericFormElement) || $renderable->getType() !== $this->type) {
             return;
@@ -133,6 +121,7 @@ final class FormElementLinkResolverHook
      * (default configuration).
      *
      * @param GenericFormElement $element
+     *
      * @return string
      */
     private function buildArgumentFromSingleConfiguration(GenericFormElement $element): string
@@ -178,6 +167,7 @@ final class FormElementLinkResolverHook
      * @param GenericFormElement $element
      * @param string[] $linkTextPropertyPath
      * @param int $pageUid
+     *
      * @return string
      */
     private function buildArgument(GenericFormElement $element, array $linkTextPropertyPath, int $pageUid): string
@@ -199,6 +189,7 @@ final class FormElementLinkResolverHook
      * configured (via property "additionalLinks").
      *
      * @param GenericFormElement $element
+     *
      * @return bool
      */
     private function hasAdditionalLinksConfigured(GenericFormElement $element): bool
@@ -213,6 +204,7 @@ final class FormElementLinkResolverHook
      *
      * @param RootRenderableInterface $renderable
      * @param string[] $propertyPath
+     *
      * @return string
      */
     private function translate(RootRenderableInterface $renderable, array $propertyPath): string
@@ -233,6 +225,7 @@ final class FormElementLinkResolverHook
      * @param string $linkText
      * @param int $pageUid
      * @param array<string, string|int> $additionalAttributes
+     *
      * @return string
      */
     private function buildLinkFromPageUid(string $linkText, int $pageUid, array $additionalAttributes = []): string
@@ -280,6 +273,7 @@ final class FormElementLinkResolverHook
      * by an additional character (%%) and will be excluded from the check.
      *
      * @param string $value String to test for the need of character substitution
+     *
      * @return bool `true` if character substitution is needed, `false` otherwise
      * @see printf()
      */

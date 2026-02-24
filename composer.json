@@ -1,63 +1,70 @@
 {
-	"name": "tritum/form-element-linked-checkbox",
-	"description": "Adds a new form element which allows the editor to create a checkbox with a linked label text. This is an extension for TYPO3 CMS.",
-	"license": "GPL-2.0-or-later",
-	"type": "typo3-cms-extension",
-	"authors": [
-		{
-			"name": "Björn Jacob",
-			"email": "bjoern.jacob@tritum.de",
-			"homepage": "https://www.tritum.de",
-			"role": "Developer"
-		},
-		{
-			"name": "Elias Häußler",
-			"email": "elias@haeussler.dev",
-			"homepage": "https://haeussler.dev",
-			"role": "Developer"
-		}
-	],
-	"require": {
-		"php": "^8.1",
-		"typo3/cms-core": "^12.4 || ^13.4",
-		"typo3/cms-form": "^12.4 || ^13.4",
-		"typo3/cms-frontend": "^12.4 || ^13.4"
-	},
-	"require-dev": {
-		"armin/editorconfig-cli": "^1.5",
-		"ergebnis/composer-normalize": "^2.23",
-		"helmich/typo3-typoscript-lint": "^3.1",
-		"phpstan/phpstan": "^1.3",
-		"saschaegerer/phpstan-typo3": "^1.0",
-		"typo3/coding-standards": "^0.7.1"
-	},
-	"autoload": {
-		"psr-4": {
-			"TRITUM\\FormElementLinkedCheckbox\\": "Classes/"
-		}
-	},
-	"config": {
-		"allow-plugins": {
-			"ergebnis/composer-normalize": true,
-			"typo3/class-alias-loader": true,
-			"typo3/cms-composer-installers": true
-		},
-		"sort-packages": true
-	},
-	"extra": {
-		"typo3/cms": {
-			"extension-key": "form_element_linked_checkbox"
-		}
-	},
-	"scripts": {
-		"lint": [
-			"@lint:editorconfig",
-			"@lint:php",
-			"@lint:typoscript"
-		],
-		"lint:editorconfig": "ec --fix --git-only",
-		"lint:php": "php-cs-fixer fix",
-		"lint:typoscript": "typoscript-lint -c typoscript-lint.yml",
-		"sca": "phpstan analyse -c phpstan.neon"
-	}
+    "name": "tritum/form-element-linked-checkbox",
+    "description": "Adds a new form element which allows the editor to create a checkbox with a linked label text. This is an extension for TYPO3 CMS.",
+    "license": "GPL-2.0-or-later",
+    "type": "typo3-cms-extension",
+    "authors": [
+        {
+            "name": "Björn Jacob",
+            "email": "bjoern.jacob@tritum.de",
+            "homepage": "https://www.tritum.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Elias Häußler",
+            "email": "elias@haeussler.dev",
+            "homepage": "https://haeussler.dev",
+            "role": "Developer"
+        },
+        {
+            "name": "dreistrom.land",
+            "email": "hello@dreistrom.land",
+            "homepage": "https://dreistrom.land",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/tritum/form_element_linked_checkbox",
+    "require": {
+        "php": "^8.2",
+        "typo3/cms-core": "^13.4 || ^14.1",
+        "typo3/cms-form": "^13.4 || ^14.1",
+        "typo3/cms-frontend": "^13.4 || ^14.1"
+    },
+    "require-dev": {
+        "armin/editorconfig-cli": "^2.2",
+        "ergebnis/composer-normalize": "^2.23",
+        "helmich/typo3-typoscript-lint": "^3.1",
+        "phpstan/phpstan": "^1.3",
+        "saschaegerer/phpstan-typo3": "^1.0",
+        "typo3/coding-standards": "^0.8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TRITUM\\FormElementLinkedCheckbox\\": "Classes/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "form_element_linked_checkbox"
+        }
+    },
+    "scripts": {
+        "lint": [
+            "@lint:editorconfig",
+            "@lint:php",
+            "@lint:typoscript"
+        ],
+        "lint:editorconfig": "ec --fix --git-only",
+        "lint:php": "php-cs-fixer fix -v",
+        "lint:typoscript": "typoscript-lint -c typoscript-lint.yml",
+        "sca": "phpstan analyse -c phpstan.neon"
+    }
 }

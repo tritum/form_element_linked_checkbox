@@ -1,7 +1,10 @@
 includes:
-		- vendor/saschaegerer/phpstan-typo3/extension.neon
+    - vendor/saschaegerer/phpstan-typo3/extension.neon
 parameters:
-		level: 9
-		paths:
-				- Classes
-				- Configuration
+    level: 9
+    paths:
+        - Classes
+        - Configuration
+    # todo: Remove when dropping v13 support
+    excludePaths:
+        - Classes/EventListener/*

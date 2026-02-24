@@ -16,10 +16,6 @@ trim_trailing_whitespace = true
 [*.{ts,js}]
 indent_size = 2
 
-# JSON-Files
-[*.json]
-indent_style = tab
-
 # ReST-Files
 [*.rst]
 indent_size = 4
@@ -32,7 +28,6 @@ indent_size = 2
 # NEON-Files
 [*.neon]
 indent_size = 2
-indent_style = tab
 
 # package.json
 [package.json]
@@ -42,15 +37,6 @@ indent_size = 2
 [*.{typoscript,tsconfig}]
 indent_size = 2
 
-# XLF-Files
-[*.xlf]
-indent_style = tab
-
 # SQL-Files
 [*.sql]
-indent_style = tab
 indent_size = 2
-
-# .htaccess
-[{_.htaccess,.htaccess}]
-indent_style = tab
